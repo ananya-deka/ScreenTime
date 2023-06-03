@@ -1,0 +1,15 @@
+.playlist__button {
+	background-color: transparent;
+	border: 1px solid transparent;
+	display: flex;
+	gap: 0.5em;
+}
+
+.playlist__icon {
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.playlist__icon:hover {
+	transform: scale(1.3);
+}

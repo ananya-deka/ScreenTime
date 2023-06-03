@@ -1,0 +1,11 @@
+.page {
+	padding: 0 3rem;
+	color: whitesmoke;
+}
+
+.header {
+	padding: 1rem 0;
+	font-size: 1.5rem;
+	letter-spacing: 0.1em;
+	margin-bottom: 2em;
+}

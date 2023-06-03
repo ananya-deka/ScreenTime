@@ -1,0 +1,25 @@
+.search {
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.search-bar {
+	display: block;
+	width: 90%;
+	padding: 1em 3em;
+	border-radius: 2em;
+	border: none;
+	background-color: transparent;
+	font-size: 1.5rem;
+	color: white;
+	background: url("../../assets/search-svgrepo-com.svg") no-repeat left center;
+	background-size: 30px 30px;
+	background-position-x: 1%;
+}
+
+.search-bar::placeholder {
+	color: rgb(182, 182, 182);
+}

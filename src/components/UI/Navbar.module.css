@@ -1,0 +1,21 @@
+.navbar {
+	width: 60%;
+	height: 90%;
+	background-color: #03354f;
+	border-radius: 1em;
+	position: relative;
+	box-shadow: 0 2px 8px #000;
+}
+
+.option {
+	list-style: none;
+}
+
+.option {
+	margin: 2rem 0;
+	cursor: pointer;
+}
+
+.icon {
+	margin: 0 auto;
+}

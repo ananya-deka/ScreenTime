@@ -1,0 +1,88 @@
+.hidden {
+	display: none;
+}
+
+.playlist__menu {
+	display: absolute;
+	top: 0;
+	left: 0;
+	list-style: none;
+	font-size: 0.8em;
+	border-radius: 0 0.5em 0.5em;
+	outline: 1px solid transparent;
+	background-color: transparent;
+	color: #333;
+	box-shadow: 0 2px 8px #000;
+	cursor: pointer;
+	text-align: center;
+}
+
+.menu__items {
+	border-bottom: 1px solid black;
+}
+
+.menu__items:last-child {
+	border-bottom: none;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+
+.menu__items:first-child {
+	border-top-right-radius: 0.5em;
+}
+
+.options {
+	padding: 0.5em;
+}
+
+.new_playlist {
+	padding: 0.5em;
+	border: none;
+	background-color: transparent;
+	font: inherit;
+}
+
+.new_playlist:focus {
+	outline: none;
+}
+
+.new_playlist:hover {
+	background-color: transparent;
+}
+
+.add {
+	display: flex;
+	background-color: whitesmoke;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+
+.add_button {
+	border: none;
+	border-left: 1px solid #333;
+	border-bottom-right-radius: 0.5em;
+	background-color: transparent;
+	cursor: pointer;
+	padding: 0.5em;
+}
+
+.add_button:hover {
+	background-color: rgb(186, 181, 181);
+}
+
+.added {
+	background-color: #03354f;
+	color: whitesmoke;
+}
+
+.added:hover {
+	background-color: rgba(3, 52, 79, 0.663);
+}
+
+.not_added {
+	background-color: whitesmoke;
+}
+
+.not_added:hover {
+	background-color: rgb(186, 181, 181);
+}

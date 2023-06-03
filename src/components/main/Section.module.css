@@ -1,0 +1,16 @@
+.section {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+	gap: 3rem;
+}
+
+.details {
+	padding: 1em;
+	background-color: transparent;
+}
+
+.year {
+	font-size: 0.8em;
+	letter-spacing: 0.1em;
+	font-weight: 200;
+}

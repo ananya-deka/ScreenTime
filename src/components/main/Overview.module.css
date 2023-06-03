@@ -1,0 +1,44 @@
+.header {
+	font-size: 2rem;
+	letter-spacing: 0.1em;
+}
+
+.info {
+	list-style: none;
+	font-size: 1.2rem;
+	margin-top: auto;
+	margin-bottom: 2em;
+}
+
+.inline {
+	display: inline;
+}
+
+.language {
+	margin: 0 0.3em;
+}
+
+.language::after {
+	content: ",";
+}
+
+.language:last-child::after {
+	content: "";
+}
+
+.genres {
+	list-style: none;
+}
+
+.genre {
+	padding: 0.3em 1em;
+	margin-right: 0.3em;
+	border-radius: 1em;
+	background-color: #03354f;
+	box-shadow: 0 2px 8px #000;
+	cursor: pointer;
+}
+
+.genre:hover {
+	background-color: rgba(3, 52, 79, 0.663);
+}
