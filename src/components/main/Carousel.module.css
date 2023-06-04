@@ -1,6 +1,6 @@
 .carousel {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
 	gap: 3rem;
 }
 
@@ -10,8 +10,7 @@
 	padding: 2em;
 	width: 100%;
 	background-image: linear-gradient(to bottom, transparent, #022536);
-	border-bottom-left-radius: 0.5em;
-	border-bottom-right-radius: 0.5em;
+	color: #eee;
 }
 
 .title {

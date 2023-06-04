@@ -1,9 +1,11 @@
 import { forwardRef } from "react";
 import classes from "./PlaylistMenu.module.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const PlaylistMenu = forwardRef(
-	({ video, display, playlists, addPlaylist, addToPlaylist }, ref) => {
+	({ video, display, createPlaylist, addToPlaylist }, ref) => {
+		const playlists = useSelector((state) => state.playlist.playlists);
 		const playlistNames = Object.keys(playlists);
 		const params = useParams();
 
@@ -32,7 +34,7 @@ const PlaylistMenu = forwardRef(
 					</li>
 				))}
 				<li className={classes.menu__items}>
-					<form className={classes.add} onSubmit={addPlaylist}>
+					<form className={classes.add} onSubmit={createPlaylist}>
 						<input
 							className={classes.new_playlist}
 							type="text"

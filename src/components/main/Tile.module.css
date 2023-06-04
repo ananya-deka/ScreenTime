@@ -1,21 +1,21 @@
 .tile {
-	border-radius: 0.5em;
+	border-radius: 0.1em;
 	position: relative;
 	transition: all 0.3s;
+	box-shadow: 0 2px 8px #000;
 }
 
 .tile:hover {
-	transform: scale(1.3);
+	transform: scale(1.1);
 	z-index: 2;
 	box-shadow: 0 2px 8px #000;
-	background-color: rgb(3, 55, 80);
 }
 
 .thumbnail {
 	object-fit: cover;
 	width: 100%;
 	aspect-ratio: 2/1;
-	border-radius: 0.5em;
+	border-radius: 0.1em;
 }
 
 /* .thumbnail:hover {

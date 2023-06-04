@@ -1,7 +1,12 @@
-import AddToPlaylist from "../Playlist/AddToPlaylist";
 import classes from "./Overview.module.css";
+import AddToPlaylist from "../Playlist/AddToPlaylist";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Overview = ({ video }) => {
+	const movies = useSelector((state) => state.playlist.movies);
+	const params = useParams();
+
 	return (
 		<>
 			<header className={classes.header}>

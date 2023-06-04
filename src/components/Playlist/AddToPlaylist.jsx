@@ -6,83 +6,57 @@ import PlaylistMenu from "./PlaylistMenu";
 import heartLogo from "../../assets/heart-filled.png";
 import cancelLogo from "../../assets/cancel.png";
 import { useParams } from "react-router-dom";
-
-const tempPlaylist = {
-	Watchlist: {
-		name: "Watchlist",
-		movies: {},
-		tv: {},
-	},
-};
+import { useSelector, useDispatch } from "react-redux";
+import { createPlaylist, addToPlaylist } from "../../redux/playlistSlice";
 
 const AddToPlaylist = ({ video }) => {
 	const [displayMenu, setDisplayMenu] = useState(false);
 	const [logo, setLogo] = useState(heartLogo);
-	const [playlists, setPlaylists] = useState(tempPlaylist);
 	const inputRef = useRef();
 	const params = useParams();
+	const playlists = useSelector((state) => state.playlist.playlists);
+	const dispatch = useDispatch();
 
 	function toggleDisplay() {
 		setDisplayMenu((prev) => !prev);
 		setLogo((prev) => (prev === heartLogo ? cancelLogo : heartLogo));
 		inputRef.current.value = "";
-		console.log(playlists);
 	}
 
-	function addPlaylistHandler(e) {
+	function createPlaylistHandler(e) {
 		e.preventDefault();
 		const name = inputRef.current.value;
 		if (name in playlists) {
 			return;
 		}
 
-		let movies = {};
-		let tv = {};
-
-		if (params.page === "movie") {
-			movies = {
-				[video.id]: video,
-			};
-		} else {
-			tv = {
-				[video.id]: video,
-			};
-		}
-
-		const new_playlist = {
-			[name]: {
+		dispatch(
+			createPlaylist({
 				name,
-				movies,
-				tv,
-			},
-		};
+				video,
+				media_type: params.page,
+			})
+		);
 
-		setPlaylists((prev) => ({ ...prev, ...new_playlist }));
 		toggleDisplay();
 	}
 
 	function addToPlaylistHandler(playlist) {
-		if (params.page === "movie") {
-			if (video.id in playlists[playlist].movies) return;
-
-			setPlaylists((prev) => {
-				let altered = { ...prev };
-				const newEntry = {
-					[video.id]: video,
-				};
-
-				let alteredPlaylist = altered[playlist];
-				let alteredMovies = { ...alteredPlaylist.movies, ...newEntry };
-				alteredPlaylist.movies = { ...alteredMovies };
-				altered[playlist] = { ...alteredPlaylist };
-
-				return altered;
-			});
-		} else {
-			if (video.id in playlists[playlist][tv]) return;
-
-			playlists[playlist][tv][video.id] = video;
+		if (
+			(params.page === "movie" &&
+				video.id in playlists[playlist].movies) ||
+			(params.page === "tv" && video.id in playlists[playlist].tv)
+		) {
+			return;
 		}
+
+		dispatch(
+			addToPlaylist({
+				video,
+				playlist,
+				media_type: params.page,
+			})
+		);
 	}
 
 	return (
@@ -94,7 +68,7 @@ const AddToPlaylist = ({ video }) => {
 				addToPlaylist={addToPlaylistHandler}
 				playlists={playlists}
 				ref={inputRef}
-				addPlaylist={addPlaylistHandler}
+				createPlaylist={createPlaylistHandler}
 			/>
 		</div>
 	);

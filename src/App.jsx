@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import classes from "./App.module.css";
 import Navbar from "./components/UI/Navbar";
 import SearchBar from "./components/UI/SearchBar";
+import { ScrollRestoration } from "react-router-dom";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 			</aside>
 			<div className={classes.content}>
 				<SearchBar placeholder="Search for movies or TV shows" />
+				<ScrollRestoration />
 				<main>
 					<Outlet />
 				</main>

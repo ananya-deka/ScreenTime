@@ -44,13 +44,15 @@ const Navbar = () => {
 					</Link>
 				</li>
 				<li className={classes.option}>
-					<img
-						className={classes.icon}
-						height="40"
-						width="40"
-						src={bookmarkLogo}
-						alt="Bookmarks"
-					/>
+					<Link to={`playlists`}>
+						<img
+							className={classes.icon}
+							height="40"
+							width="40"
+							src={bookmarkLogo}
+							alt="Bookmarks"
+						/>
+					</Link>
 				</li>
 			</ul>
 		</div>

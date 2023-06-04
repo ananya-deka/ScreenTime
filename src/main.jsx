@@ -9,7 +9,10 @@ import TVPage, { loader as tvLoader } from "./pages/TVPage";
 import HomePage from "./pages/HomePage";
 import SearchPage, { loader as searchLoader } from "./pages/SearchPage";
 import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
-import GenreProvider from "./contexts/GenreContext";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import PlaylistPage from "./pages/PlaylistPage";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
 	{
@@ -41,14 +44,18 @@ const router = createBrowserRouter([
 				element: <DetailsPage />,
 				loader: detailsLoader,
 			},
+			{
+				path: "playlists",
+				element: <PlaylistPage />,
+			},
 		],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<GenreProvider>
+		<Provider store={store}>
 			<RouterProvider router={router} />
-		</GenreProvider>
+		</Provider>
 	</React.StrictMode>
 );

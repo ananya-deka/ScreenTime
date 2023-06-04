@@ -7,7 +7,8 @@
 }
 
 body {
-	background-color: #022536;
+	/* background-color: rgba(2, 37, 54, 0.926); */
+	background-color: rgba(0, 5, 13, 0.959);
 	overflow-x: hidden;
 }
 
