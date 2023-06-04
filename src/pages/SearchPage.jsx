@@ -12,7 +12,7 @@ const SearchPage = () => {
 	return query ? (
 		<Content section={searchResults} />
 	) : (
-		<Navigate to="-1" replace />
+		<Navigate to="/" replace />
 	);
 };
 
