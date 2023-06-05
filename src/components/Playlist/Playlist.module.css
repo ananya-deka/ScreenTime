@@ -9,6 +9,23 @@
 	align-items: center;
 	gap: 1rem;
 	margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+
+.delete_button,
+.remove_button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font: inherit;
+}
+
+.delete_button:hover,
+.remove_button:hover {
+	transform: scale(1.3);
+}
+
+.remove_button {
 }
 
 .playlist__content {
@@ -17,6 +34,13 @@
 	gap: 2rem;
 }
 
-.details {
+.info_box {
 	padding: 1em;
+	background-color: #001940;
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }

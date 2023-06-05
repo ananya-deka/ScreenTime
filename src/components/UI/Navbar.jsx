@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import homeLogo from "../../assets/home-filled-svgrepo-com.svg";
 import movieLogo from "../../assets/movie-play-button-svgrepo-com.svg";
 import tvLogo from "../../assets/tv-free-2-svgrepo-com.svg";
-import bookmarkLogo from "../../assets/bookmark-fill-svgrepo-com.svg";
+import bookmarkLogo from "../../assets/bookmark-svgrepo-com.svg";
 
 const Navbar = () => {
 	return (
@@ -14,8 +14,8 @@ const Navbar = () => {
 					<Link to={`/`}>
 						<img
 							className={classes.icon}
-							height="40"
-							width="40"
+							height="25"
+							width="25"
 							src={homeLogo}
 							alt="Home"
 						/>
@@ -25,8 +25,8 @@ const Navbar = () => {
 					<Link to={`movies`}>
 						<img
 							className={classes.icon}
-							height="30"
-							width="30"
+							height="25"
+							width="25"
 							src={movieLogo}
 							alt="Movies"
 						/>
@@ -36,8 +36,8 @@ const Navbar = () => {
 					<Link to={`tv`}>
 						<img
 							className={classes.icon}
-							height="30"
-							width="30"
+							height="25"
+							width="25"
 							src={tvLogo}
 							alt="TV Shows"
 						/>
@@ -47,8 +47,8 @@ const Navbar = () => {
 					<Link to={`playlists`}>
 						<img
 							className={classes.icon}
-							height="40"
-							width="40"
+							height="25"
+							width="25"
 							src={bookmarkLogo}
 							alt="Bookmarks"
 						/>

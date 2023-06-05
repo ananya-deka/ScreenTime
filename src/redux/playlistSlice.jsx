@@ -84,8 +84,43 @@ export const updatePlaylist = createAsyncThunk(
 			}
 		);
 
-		const data = await response.json();
 		return { key, updatedEntry };
+	}
+);
+
+export const deletePlaylist = createAsyncThunk(
+	"playlist/deletePlaylist",
+	async (payload) => {
+		const key = payload.key;
+
+		const reponse = await fetch(
+			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${key}.json`,
+			{
+				method: "delete",
+			}
+		);
+
+		return { key };
+	}
+);
+
+export const removeFromPlaylist = createAsyncThunk(
+	"playlist/removeFromPlaylist",
+	async (payload) => {
+		const playlistKey = payload.playlistKey;
+		const media_type = payload.media_type;
+		const videoKey = payload.videoKey;
+
+		const response = await fetch(
+			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${playlistKey}/${media_type}/${videoKey}.json`,
+			{
+				method: "delete",
+			}
+		);
+		console.log(
+			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${playlistKey}/${media_type}/${videoKey}.json`
+		);
+		return { playlistKey, media_type, videoKey };
 	}
 );
 
@@ -131,11 +166,45 @@ export const playlistSlice = createSlice({
 			})
 			.addCase(updatePlaylist.fulfilled, (state, action) => {
 				state.updateStatus = "idle";
+
 				const key = action.payload.key;
 				const newEntry = action.payload.updatedEntry;
 				state.playlists[key] = newEntry;
 			})
 			.addCase(updatePlaylist.rejected, (state, action) => {
+				state.updateStatus = "failed";
+				state.error = action.error.message;
+			});
+
+		builder
+			.addCase(deletePlaylist.pending, (state) => {
+				state.updateStatus = "loading";
+			})
+			.addCase(deletePlaylist.fulfilled, (state, action) => {
+				state.updateStatus = "idle";
+
+				const key = action.payload.key;
+				delete state.playlists[key];
+			})
+			.addCase(deletePlaylist.rejected, (state, action) => {
+				state.updateStatus = "failed";
+				state.error = action.error.message;
+			});
+
+		builder
+			.addCase(removeFromPlaylist.pending, (state) => {
+				state.updateStatus = "loading";
+			})
+			.addCase(removeFromPlaylist.fulfilled, (state, action) => {
+				state.updateStatus = "idle";
+
+				const playlistKey = action.payload.playlistKey;
+				const media_type = action.payload.media_type;
+				const videoKey = action.payload.videoKey;
+
+				delete state.playlists[playlistKey][media_type][videoKey];
+			})
+			.addCase(removeFromPlaylist.rejected, (state, action) => {
 				state.updateStatus = "failed";
 				state.error = action.error.message;
 			});

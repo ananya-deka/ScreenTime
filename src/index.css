@@ -7,9 +7,9 @@
 }
 
 body {
-	/* background-color: rgba(2, 37, 54, 0.926); */
-	background-color: rgba(0, 5, 13, 0.959);
+	background-color: rgba(0, 5, 13, 0.961);
 	overflow-x: hidden;
+	padding-bottom: 2em;
 }
 
 img {
