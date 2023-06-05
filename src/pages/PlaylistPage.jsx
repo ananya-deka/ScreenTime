@@ -1,32 +1,21 @@
 import { useSelector } from "react-redux";
 import Content from "../components/UI/Content";
+import Playlist from "../components/Playlist/Playlist";
 
 const PlaylistPage = () => {
 	const playlists = useSelector((state) => state.playlist.playlists);
-	const playlistNames = Object.keys(playlists);
-
 	return (
 		<>
-			{playlistNames.map((playlist) => {
-				const movies = playlists[playlist].movies;
-				const tv = playlists[playlist].tv;
-				let videos = [];
+			{Object.keys(playlists).map((key) => {
+				const movies = playlists[key].movies
+					? playlists[key].movies
+					: {};
+				const tv = playlists[key].tv ? playlists[key].tv : {};
+				console.log(movies);
+				const videos = Object.values(movies).concat(Object.values(tv));
 
-				if (movies) {
-					for (let key in movies) {
-						videos.push(movies[key]);
-					}
-				}
-
-				if (tv) {
-					for (let key in tv) {
-						videos.push(tv[key]);
-					}
-				}
-
-				return (
-					<Content key={playlist} title={playlist} section={videos} />
-				);
+				// return <Content title={playlists[key].name} section={videos} />;
+				return <Playlist title={playlists[key].name} videos={videos} />;
 			})}
 		</>
 	);

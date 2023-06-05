@@ -7,7 +7,7 @@ import heartLogo from "../../assets/heart-filled.png";
 import cancelLogo from "../../assets/cancel.png";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { createPlaylist, addToPlaylist } from "../../redux/playlistSlice";
+import { updatePlaylist, createPlaylist } from "../../redux/playlistSlice";
 
 const AddToPlaylist = ({ video }) => {
 	const [displayMenu, setDisplayMenu] = useState(false);
@@ -23,40 +23,42 @@ const AddToPlaylist = ({ video }) => {
 		inputRef.current.value = "";
 	}
 
-	function createPlaylistHandler(e) {
+	async function createPlaylistHandler(e) {
 		e.preventDefault();
 		const name = inputRef.current.value;
-		if (name in playlists) {
-			return;
+		for (let key in playlists) {
+			if (playlists[key].name === name) return;
 		}
 
-		dispatch(
+		await dispatch(
 			createPlaylist({
 				name,
 				video,
 				media_type: params.page,
 			})
-		);
-
-		toggleDisplay();
+		).unwrap();
+		inputRef.current.value = "";
 	}
 
-	function addToPlaylistHandler(playlist) {
+	async function addToPlaylistHandler(key) {
 		if (
 			(params.page === "movie" &&
-				video.id in playlists[playlist].movies) ||
-			(params.page === "tv" && video.id in playlists[playlist].tv)
+				playlists[key].movies &&
+				video.id in playlists[key].movies) ||
+			(params.page === "tv" &&
+				playlists[key].tv &&
+				video.id in playlists[key].tv)
 		) {
 			return;
 		}
 
-		dispatch(
-			addToPlaylist({
+		await dispatch(
+			updatePlaylist({
 				video,
-				playlist,
+				key,
 				media_type: params.page,
 			})
-		);
+		).unwrap();
 	}
 
 	return (

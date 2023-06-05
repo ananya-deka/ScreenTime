@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PlaylistMenu = forwardRef(
-	({ video, display, createPlaylist, addToPlaylist }, ref) => {
+	({ display, createPlaylist, addToPlaylist }, ref) => {
 		const playlists = useSelector((state) => state.playlist.playlists);
-		const playlistNames = Object.keys(playlists);
-		const params = useParams();
+		const updateStatus = useSelector(
+			(state) => state.playlist.updateStatus
+		);
 
+		const params = useParams();
 		let media_type = "movies";
 		if (params.page === "tv") {
 			media_type = "tv";
@@ -20,17 +22,13 @@ const PlaylistMenu = forwardRef(
 					!display ? classes.hidden : ""
 				}`}
 			>
-				{playlistNames.map((playlist) => (
+				{Object.keys(playlists).map((key) => (
 					<li
-						key={playlist}
-						className={`${classes.menu__items} ${classes.options} ${
-							video.id in playlists[playlist][media_type]
-								? classes.added
-								: classes.not_added
-						}`}
-						onClick={addToPlaylist.bind(null, playlist)}
+						key={key}
+						className={`${classes.menu__items} ${classes.options}`}
+						onClick={addToPlaylist.bind(null, key)}
 					>
-						{playlist}
+						{playlists[key].name}
 					</li>
 				))}
 				<li className={classes.menu__items}>
@@ -42,9 +40,19 @@ const PlaylistMenu = forwardRef(
 							placeholder="Create Playlist"
 							ref={ref}
 						/>
-						<button className={classes.add_button}>+</button>
+						<button
+							disabled={updateStatus === "loading"}
+							className={classes.add_button}
+						>
+							+
+						</button>
 					</form>
 				</li>
+				{updateStatus === "loading" && (
+					<li className={`${classes.menu__items} ${classes.options}`}>
+						Please Wait...
+					</li>
+				)}
 			</menu>
 		);
 	}

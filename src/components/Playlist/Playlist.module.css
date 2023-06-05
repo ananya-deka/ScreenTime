@@ -1,0 +1,22 @@
+.playlist {
+	margin-bottom: 3rem;
+	color: whitesmoke;
+	padding: 2rem;
+}
+
+.playlist__header {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.playlist__content {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 2rem;
+}
+
+.details {
+	padding: 1em;
+}

@@ -7,13 +7,13 @@ const Tile = (props) => {
 	function imageErrorHandler(e) {
 		e.target.src = fallbackImg;
 	}
-
+	console.log(props);
 	return (
-		<Link
-			to={`/details/${props.movie.media_type}/${props.movie.id}`}
-			state={{ target: props.movie }}
-		>
-			<div className={classes.tile}>
+		<div className={classes.tile}>
+			<Link
+				to={`/details/${props.movie.media_type}/${props.movie.id}`}
+				state={{ target: props.movie }}
+			>
 				<div>
 					<img
 						className={classes.thumbnail}
@@ -23,8 +23,8 @@ const Tile = (props) => {
 					/>
 				</div>
 				<div>{props.children}</div>
-			</div>
-		</Link>
+			</Link>
+		</div>
 	);
 };
 

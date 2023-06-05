@@ -21,6 +21,7 @@ export async function loader({ params }) {
 
 	const response = await axios.get(request);
 	const video = response.data;
+	video.media_type = media_type;
 
 	return { video };
 }
