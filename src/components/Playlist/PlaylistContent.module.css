@@ -1,0 +1,20 @@
+.info_box {
+	padding: 1em;
+	background-color: #001940;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.delete_button,
+.remove_button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font: inherit;
+}
+
+.delete_button:hover,
+.remove_button:hover {
+	transform: scale(1.3);
+}

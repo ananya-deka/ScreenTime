@@ -1,13 +1,23 @@
 .section {
+	margin-bottom: 3rem;
+	margin-right: 3rem;
+}
+
+.section__header {
+	color: whitesmoke;
+	padding: 1em;
+}
+
+.group {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 3rem;
-	margin-bottom: 3rem;
+	color: whitesmoke;
 }
 
 .details {
 	padding: 1em;
-	background-color: transparent;
+	background-color: #001940;
 }
 
 .year {

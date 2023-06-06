@@ -1,8 +1,9 @@
 import classes from "./Content.module.css";
 
-import Carousel from "../main/Carousel";
+import TopRatedList from "../main/TopRatedList";
 import Details from "../main/Details";
 import Section from "../main/Section";
+import { useEffect } from "react";
 
 const Content = ({ title, carousel, section, details }) => {
 	return (
@@ -12,7 +13,7 @@ const Content = ({ title, carousel, section, details }) => {
 					<h2>{title}</h2>
 				</header>
 			)}
-			{carousel && <Carousel movies={carousel} />}
+			{carousel && <TopRatedList movies={carousel} />}
 			{section && <Section movies={section} />}
 			{details && <Details video={details} />}
 		</section>

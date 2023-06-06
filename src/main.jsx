@@ -12,7 +12,6 @@ import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import PlaylistPage from "./pages/PlaylistPage";
-import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
 	{

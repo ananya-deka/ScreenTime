@@ -1,13 +1,15 @@
 import classes from "./Playlist.module.css";
 
-import Tile from "../main/tile";
 import { deletePlaylist, removeFromPlaylist } from "../../redux/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import PlaylistContent from "./PlaylistContent";
 
 const Playlist = ({ id, title, videos }) => {
 	const dispatch = useDispatch();
 	const status = useSelector((state) => state.playlist.updateStatus);
+	function changeColor(e, color) {
+		e.target.style.color = `{color}`;
+	}
 
 	async function deletePlaylistHandler() {
 		await dispatch(
@@ -29,14 +31,6 @@ const Playlist = ({ id, title, videos }) => {
 		).unwrap();
 	}
 
-	function setRed(e) {
-		e.target.style.color = "red";
-	}
-
-	function resetColor(e) {
-		e.target.style.color = "#ffffff";
-	}
-
 	return (
 		<section className={classes.playlist}>
 			{status === "loading" && <p>Please wait...</p>}
@@ -47,51 +41,18 @@ const Playlist = ({ id, title, videos }) => {
 					onClick={deletePlaylistHandler}
 				>
 					<i
-						onMouseOver={setRed}
-						onMouseLeave={resetColor}
-						class="fa-solid fa-xmark"
+						onMouseOver={(e) => changeColor(e, "red")}
+						onMouseLeave={(e) => changeColor(e, "#ffffff")}
+						className={"fa-solid fa-xmark"}
 						style={{ color: "#ffffff", transition: "color 0.5s" }}
 					></i>
 				</button>
 			</header>
 			<div className={classes.playlist__content}>
-				{videos.map((video) => (
-					<Tile key={video.id} movie={video}>
-						<div className={classes.info_box}>
-							<div className={classes.details}>
-								<p className={classes.year}>
-									<small>
-										{new Date(
-											video.release_date ||
-												video.first_air_date
-										).getFullYear()}
-									</small>
-								</p>
-								<p>{video.title || video.original_name}</p>
-							</div>
-							<button
-								className={classes.remove_button}
-								onClick={(e) =>
-									removeFromPlaylistHandler(
-										e,
-										video.media_type,
-										video.id
-									)
-								}
-							>
-								<i
-									onMouseOver={setRed}
-									onMouseLeave={resetColor}
-									class="fa-solid fa-xmark"
-									style={{
-										color: "#ffffff",
-										transition: "color 0.5s",
-									}}
-								></i>
-							</button>
-						</div>
-					</Tile>
-				))}
+				<PlaylistContent
+					videos={videos}
+					removeFromPlaylist={removeFromPlaylistHandler}
+				/>
 			</div>
 		</section>
 	);

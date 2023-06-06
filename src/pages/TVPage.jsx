@@ -1,15 +1,16 @@
 import requests from "../api/requests";
 import axios from "../api/axios";
 
-import Content from "../components/UI/Content";
 import { useLoaderData } from "react-router-dom";
+import TopRatedList from "../components/main/TopRatedList";
+import Section from "../components/main/Section";
 
 const TVPage = () => {
 	const { topRatedTVShows, popularTVShows } = useLoaderData();
 	return (
 		<>
-			<Content title={`Top Rated`} carousel={topRatedTVShows} />
-			<Content title={`Popular Right Now`} section={popularTVShows} />
+			<TopRatedList items={topRatedTVShows} />
+			<Section title={`Popular Right Now`} items={popularTVShows} />
 		</>
 	);
 };

@@ -1,0 +1,14 @@
+.carousel {
+	width: 95%;
+}
+
+.next_arrow {
+	position: absolute;
+	z-index: 5;
+	height: 30%;
+	width: auto;
+}
+
+.slick-disabled {
+	display: none;
+}

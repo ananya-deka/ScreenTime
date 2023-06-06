@@ -1,5 +1,4 @@
 .tile {
-	border-radius: 0.1em;
 	position: relative;
 	transition: all 0.3s;
 	box-shadow: 0 2px 8px #000;
@@ -15,11 +14,5 @@
 	object-fit: cover;
 	width: 100%;
 	height: auto;
-	/* max-width: 20rem; */
 	aspect-ratio: 2/1;
-	border-radius: 0.1em;
 }
-
-/* .thumbnail:hover {
-	transform: scale(1.1);
-} */

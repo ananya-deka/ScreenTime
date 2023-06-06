@@ -2,37 +2,26 @@ import classes from "./Tile.module.css";
 import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
 const Tile = (props) => {
-	const [showDetails, setShowDetails] = useState(false);
-
 	function imageErrorHandler(e) {
 		e.target.src = fallbackImg;
 	}
+
 	return (
-		<div
-			className={classes.tile}
-			onMouseEnter={() => {
-				setShowDetails(true);
-			}}
-			onMouseLeave={() => {
-				setShowDetails(false);
-			}}
-		>
+		<div className={classes.tile}>
 			<Link
-				to={`/details/${props.movie.media_type}/${props.movie.id}`}
-				state={{ target: props.movie }}
+				to={`/details/${props.item.media_type}/${props.item.id}`}
+				state={{ target: props.item }}
 			>
 				<div>
 					<img
 						className={classes.thumbnail}
-						src={`${base}${props.movie.backdrop_path}`}
+						src={`${base}${props.item.backdrop_path}`}
 						onError={imageErrorHandler}
-						alt={props.movie.title || props.movie.original_name}
+						alt={props.item.title || props.item.original_name}
 					/>
 				</div>
-				{/* {showDetails && <div>{props.children}</div>} */}
 				<div>{props.children}</div>
 			</Link>
 		</div>
