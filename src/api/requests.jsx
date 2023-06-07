@@ -13,6 +13,8 @@ const requests = {
 	search: `${endpoint}/search/multi?language=en&query=`,
 	getMovieGenres: `${endpoint}/genre/movie/list`,
 	getTvGenres: `${endpoint}/genre/tv/list`,
+	getMovieByGenre: `${endpoint}/discover/movie?language=en-US&sort_by=popularity.desc&with_genres=`,
+	getTvByGenre: `${endpoint}/discover/tv?language=en-US&sort_by=popularity.desc&with_genres=`,
 };
 
 export default requests;

@@ -4,6 +4,7 @@ import { deletePlaylist, removeFromPlaylist } from "../../redux/playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import List from "../main/List";
 import DeleteButton from "../UI/DeleteButton";
+import TopRatedList from "../main/TopRatedList";
 
 const Playlist = ({ id, title, videos }) => {
 	const dispatch = useDispatch();
@@ -31,7 +32,9 @@ const Playlist = ({ id, title, videos }) => {
 	}
 
 	const header = (
-		<div style={{ display: "flex", gap: "1rem" }}>
+		<div
+			style={{ display: "flex", gap: "1rem", textTransform: "uppercase" }}
+		>
 			{title}
 			<DeleteButton removeItem={deletePlaylistHandler} />
 		</div>
@@ -40,13 +43,14 @@ const Playlist = ({ id, title, videos }) => {
 	return (
 		<section className={classes.playlist}>
 			{status === "loading" && <p>Please wait...</p>}
-			<List
+			<TopRatedList
 				items={videos}
 				title={header}
 				removeFromPlaylist={removeFromPlaylistHandler}
 				deleteButton={
 					<DeleteButton removeItem={removeFromPlaylistHandler} />
 				}
+				expanded={true}
 			/>
 		</section>
 	);

@@ -29,7 +29,7 @@ function PrevArrow(props) {
 
 const Carousel = (props) => {
 	let settings = {
-		infinite: true,
+		infinite: props.children.length >= 7,
 		slidesToShow: 7,
 		slidesToScroll: 7,
 		initialSlide: 0,

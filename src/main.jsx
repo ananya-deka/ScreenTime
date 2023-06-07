@@ -12,6 +12,8 @@ import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import PlaylistPage from "./pages/PlaylistPage";
+import GenresPage from "./pages/GenresPage";
+import GenreProvider from "./context/genre-context";
 
 const router = createBrowserRouter([
 	{
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
 				loader: tvLoader,
 			},
 			{
+				path: "genres/:page/:genreId",
+				element: <GenresPage />,
+			},
+			{
 				path: "search",
 				element: <SearchPage />,
 				loader: searchLoader,
@@ -54,7 +60,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<GenreProvider>
+				<RouterProvider router={router} />
+			</GenreProvider>
 		</Provider>
 	</React.StrictMode>
 );

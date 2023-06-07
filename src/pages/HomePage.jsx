@@ -23,7 +23,13 @@ const HomePage = () => {
 		loadCurrentlyPlaying();
 	}, []);
 
-	return <List title={`Currently In Theatres`} items={currentlyPlaying} />;
+	return (
+		<List
+			title={`Currently In Theatres`}
+			items={currentlyPlaying}
+			expanded={true}
+		/>
+	);
 };
 
 export default HomePage;

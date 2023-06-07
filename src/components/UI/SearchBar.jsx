@@ -34,6 +34,7 @@ const SearchBar = ({ placeholder }) => {
 				className={classes["search-bar"]}
 				name="q"
 				ref={inputRef}
+				autoFocus={true}
 			/>
 			;
 		</form>

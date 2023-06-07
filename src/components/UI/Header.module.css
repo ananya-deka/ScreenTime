@@ -1,4 +1,6 @@
 .header {
 	color: whitesmoke;
 	padding: 1em 0;
+	display: flex;
+	justify-content: space-between;
 }

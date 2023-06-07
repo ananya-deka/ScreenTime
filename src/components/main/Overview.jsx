@@ -1,12 +1,13 @@
 import classes from "./Overview.module.css";
 import AddToPlaylist from "../Playlist/AddToPlaylist";
 import Header from "../UI/Header";
+import { Link } from "react-router-dom";
+
 const Overview = ({ video }) => {
 	const title = video.title || video.name;
 	const overview = video.overview || "No overview available for this title.";
 	const release_date = video.release_date || video.first_air_date || "N/A";
 
-	console.log(video);
 	return (
 		<>
 			<Header>
@@ -20,7 +21,9 @@ const Overview = ({ video }) => {
 						key={genre.id}
 						className={`${classes.inline} ${classes.genre}`}
 					>
-						{genre.name}
+						<Link to={`/genres/${video.media_type}/${genre.id}`}>
+							{genre.name}
+						</Link>
 					</li>
 				))}
 			</ul>

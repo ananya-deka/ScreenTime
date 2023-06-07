@@ -9,7 +9,7 @@ const SearchPage = () => {
 	const query = params.get("q");
 
 	return query ? (
-		<List items={searchResults}></List>
+		<List items={searchResults} expanded={true}></List>
 	) : (
 		<Navigate to="/" replace />
 	);
