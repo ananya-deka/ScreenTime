@@ -2,11 +2,6 @@
 	margin-bottom: 2em;
 }
 
-.group__header {
-	color: whitesmoke;
-	padding: 1em;
-}
-
 .item {
 	padding: 1rem;
 	scroll-snap-align: start;

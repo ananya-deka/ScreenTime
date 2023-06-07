@@ -5,12 +5,13 @@ import Navbar from "./components/UI/Navbar";
 import SearchBar from "./components/UI/SearchBar";
 import { ScrollRestoration } from "react-router-dom";
 import { fetchPlaylists } from "./redux/playlistSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
 	const dispatch = useDispatch();
 	const fetchStatus = useSelector((state) => state.playlist.fetchStatus);
+	const [searchVisible, setSearchVisible] = useState(false);
 
 	useEffect(() => {
 		if (fetchStatus === "idle") {
@@ -18,13 +19,29 @@ function App() {
 		}
 	}, [dispatch, fetchStatus]);
 
+	const hideSearch = (e) => {
+		if (e.code === "Escape") setSearchVisible(false);
+	};
+
+	useEffect(() => {
+		window.addEventListener("keyup", hideSearch);
+
+		return () => removeEventListener("keyup", hideSearch);
+	}, []);
+
+	function toggleSearch() {
+		setSearchVisible((prev) => !prev);
+	}
+
 	return (
 		<>
 			<aside className={classes.navbar}>
-				<Navbar></Navbar>
+				<Navbar toggleSearch={toggleSearch}></Navbar>
 			</aside>
 			<div className={classes.content}>
-				<SearchBar placeholder="Search for movies or TV shows" />
+				{searchVisible && (
+					<SearchBar placeholder="Search for movies or TV shows" />
+				)}
 				<ScrollRestoration />
 				<main>
 					<Outlet />

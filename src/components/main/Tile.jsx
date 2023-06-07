@@ -3,7 +3,7 @@ import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
 import { Link } from "react-router-dom";
 
-const Tile = (props) => {
+const Tile = ({ item, imgType, children }) => {
 	function imageErrorHandler(e) {
 		e.target.src = fallbackImg;
 	}
@@ -11,18 +11,26 @@ const Tile = (props) => {
 	return (
 		<div className={classes.tile}>
 			<Link
-				to={`/details/${props.item.media_type}/${props.item.id}`}
-				state={{ target: props.item }}
+				to={`/details/${item.media_type}/${item.id}`}
+				state={{ target: item }}
 			>
 				<div>
 					<img
 						className={classes.thumbnail}
-						src={`${base}${props.item.backdrop_path}`}
+						src={`${base}${
+							imgType === "poster"
+								? item.poster_path
+								: item.backdrop_path
+						}`}
+						style={{
+							aspectRatio:
+								imgType === "backdrop" ? "2/1" : "auto",
+						}}
 						onError={imageErrorHandler}
-						alt={props.item.title || props.item.original_name}
+						alt={item.title || item.original_name}
 					/>
 				</div>
-				<div>{props.children}</div>
+				{imgType === "backdrop" && <div>{children}</div>}
 			</Link>
 		</div>
 	);

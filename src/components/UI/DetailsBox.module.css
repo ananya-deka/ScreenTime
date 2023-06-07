@@ -1,0 +1,7 @@
+.details_box {
+	padding: 1em;
+	background-color: #001940;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}

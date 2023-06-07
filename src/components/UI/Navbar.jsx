@@ -5,8 +5,9 @@ import homeLogo from "../../assets/home-filled-svgrepo-com.svg";
 import movieLogo from "../../assets/movie-play-button-svgrepo-com.svg";
 import tvLogo from "../../assets/tv-free-2-svgrepo-com.svg";
 import bookmarkLogo from "../../assets/bookmark-svgrepo-com.svg";
+import searchLogo from "../../assets/search-svgrepo-com.svg";
 
-const Navbar = () => {
+const Navbar = ({ toggleSearch }) => {
 	return (
 		<div className={classes.navbar}>
 			<ul className={classes.options}>
@@ -53,6 +54,15 @@ const Navbar = () => {
 							alt="Bookmarks"
 						/>
 					</Link>
+				</li>
+				<li className={classes.option} onClick={toggleSearch}>
+					<img
+						className={classes.icon}
+						height="25"
+						width="25"
+						src={searchLogo}
+						alt="Search"
+					/>
 				</li>
 			</ul>
 		</div>

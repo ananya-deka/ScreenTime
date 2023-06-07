@@ -1,0 +1,15 @@
+.list {
+	margin-bottom: 2rem;
+	margin-right: 2rem;
+}
+
+.item {
+	padding: 1rem;
+	max-width: 25rem;
+}
+
+.year {
+	font-size: 0.8em;
+	letter-spacing: 0.1em;
+	font-weight: 200;
+}

@@ -1,19 +1,37 @@
 .navbar {
-	width: 60%;
-	height: 90%;
-	/* background-color: #03354f; */
+	width: 100%;
 	background-color: #001940;
-	/* background-color: #055981; */
-	border-radius: 0.5em;
 	position: relative;
 	box-shadow: 0 2px 8px #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+@media screen and (min-width: 750px) {
+	.navbar {
+		width: 60%;
+		height: 90%;
+		border-radius: 0.5em;
+		align-items: flex-start;
+	}
+
+	.options {
+		flex-direction: column;
+	}
+}
+
+.options {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3rem;
 }
 
 .option {
 	list-style: none;
-}
 
-.option {
 	margin: 2rem 0;
 	cursor: pointer;
 }

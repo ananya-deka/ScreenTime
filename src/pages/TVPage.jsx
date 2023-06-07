@@ -3,14 +3,17 @@ import axios from "../api/axios";
 
 import { useLoaderData } from "react-router-dom";
 import TopRatedList from "../components/main/TopRatedList";
-import Section from "../components/main/Section";
+import List from "../components/main/List";
 
 const TVPage = () => {
 	const { topRatedTVShows, popularTVShows } = useLoaderData();
 	return (
 		<>
-			<TopRatedList items={topRatedTVShows} />
-			<Section title={`Popular Right Now`} items={popularTVShows} />
+			<TopRatedList
+				title={`Top Rated TV Shows`}
+				items={topRatedTVShows}
+			/>
+			<List title={`Popular Right Now`} items={popularTVShows} />
 		</>
 	);
 };

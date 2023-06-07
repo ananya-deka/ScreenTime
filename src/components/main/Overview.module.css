@@ -1,17 +1,12 @@
-.header {
-	font-size: 2rem;
-	letter-spacing: 0.1em;
-}
-
 .info {
 	list-style: none;
-	font-size: 1.2rem;
 	margin-top: auto;
 	margin-bottom: 2em;
+	line-height: 1.3;
 }
 
 .inline {
-	display: inline;
+	display: inline-block;
 }
 
 .language {
@@ -28,11 +23,12 @@
 
 .genres {
 	list-style: none;
+	font-size: 0.8em;
 }
 
 .genre {
 	padding: 0.3em 1em;
-	margin-right: 0.3em;
+	margin: 0.3em;
 	border-radius: 1em;
 	background-color: #03354f;
 	box-shadow: 0 2px 8px #000;

@@ -1,32 +1,7 @@
 .playlist {
-	margin-bottom: 3rem;
+	margin-right: 2rem;
+	margin-bottom: 1rem;
 	color: whitesmoke;
 	padding: 2rem;
-}
-
-.playlist__header {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-bottom: 2rem;
-	text-transform: uppercase;
-}
-
-.playlist__content {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 2rem;
-}
-
-.delete_button,
-.remove_button {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	font: inherit;
-}
-
-.delete_button:hover,
-.remove_button:hover {
-	transform: scale(1.3);
+	box-shadow: 0 2px 8px #000;
 }

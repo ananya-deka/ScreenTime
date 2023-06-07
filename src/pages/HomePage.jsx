@@ -1,7 +1,7 @@
 import requests from "../api/requests";
 import axios from "../api/axios";
-import Content from "../components/UI/Content";
 import { useEffect, useState } from "react";
+import List from "../components/main/List";
 
 const HomePage = () => {
 	const [currentlyPlaying, setCurrentlyPlaying] = useState([]);
@@ -23,9 +23,7 @@ const HomePage = () => {
 		loadCurrentlyPlaying();
 	}, []);
 
-	return (
-		<Content title={`Currently In Theatres`} section={currentlyPlaying} />
-	);
+	return <List title={`Currently In Theatres`} items={currentlyPlaying} />;
 };
 
 export default HomePage;

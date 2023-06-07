@@ -2,17 +2,19 @@ import classes from "./TopRatedList.module.css";
 
 import Tile from "./tile";
 import Carousel from "../Layout/Carousel";
+import Header from "../UI/Header";
 
-const TopRatedList = ({ items }) => {
+const TopRatedList = ({ title, items }) => {
 	return (
 		<section className={classes.group}>
-			<header className={classes.group__header}>
-				<h2>Top Rated Movies</h2>
-			</header>
+			<Header>
+				<h2>{title}</h2>
+			</Header>
+
 			<Carousel>
 				{items.map((item) => (
 					<div key={item.id} className={classes.item}>
-						<Tile item={item}>
+						<Tile item={item} imgType={"poster"}>
 							<div className={classes.details}>
 								<p>
 									{new Date(

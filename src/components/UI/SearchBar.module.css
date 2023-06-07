@@ -4,20 +4,25 @@
 	align-items: center;
 	justify-content: center;
 	gap: 1rem;
+	position: fixed;
+	z-index: 5;
+	width: 100%;
+	top: 0;
+	left: 0;
 }
 
 .search-bar {
 	display: block;
 	width: 90%;
+	border-radius: 0.3em;
 	padding: 1em 3em;
-	border-radius: 2em;
-	border: none;
-	background-color: transparent;
-	font-size: 1.5rem;
 	color: white;
 	background: url("../../assets/search-svgrepo-com.svg") no-repeat left center;
-	background-size: 30px 30px;
+	background-size: 15px 15px;
 	background-position-x: 1%;
+	background-color: #00000026;
+	box-shadow: 0 2px 8px #000;
+	border: none;
 }
 
 .search-bar::placeholder {

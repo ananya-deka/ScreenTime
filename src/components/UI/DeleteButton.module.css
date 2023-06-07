@@ -1,0 +1,10 @@
+.delete_button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font: inherit;
+}
+
+.delete_button:hover {
+	transform: scale(1.3);
+}

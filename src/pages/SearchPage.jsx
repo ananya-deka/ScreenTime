@@ -1,8 +1,7 @@
 import requests from "../api/requests";
 import axios from "../api/axios";
 import { Navigate, useLoaderData, useSearchParams } from "react-router-dom";
-
-import Content from "../components/UI/Content";
+import List from "../components/main/List";
 
 const SearchPage = () => {
 	const { searchResults } = useLoaderData();
@@ -10,7 +9,7 @@ const SearchPage = () => {
 	const query = params.get("q");
 
 	return query ? (
-		<Content section={searchResults} />
+		<List items={searchResults}></List>
 	) : (
 		<Navigate to="/" replace />
 	);

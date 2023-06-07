@@ -1,11 +1,11 @@
-import { useLoaderData, useLocation } from "react-router-dom";
-import Content from "../components/UI/Content";
+import { useLoaderData } from "react-router-dom";
 import requests from "../api/requests";
 import axios from "../api/axios";
+import Details from "../components/main/Details";
 
 const DetailsPage = () => {
 	const { video } = useLoaderData();
-	return <Content details={video} />;
+	return <Details video={video} />;
 };
 
 export async function loader({ params }) {

@@ -1,12 +1,26 @@
 .carousel {
-	width: 95%;
+	margin-right: 2rem;
+}
+
+.arrow {
+	position: absolute;
+	right: 0;
+	z-index: 5;
+	height: 20%;
+	width: auto;
+}
+
+.prev {
+	outline: 1px solid red;
+	height: 100%;
 }
 
 .next_arrow {
-	position: absolute;
-	z-index: 5;
-	height: 30%;
-	width: auto;
+	right: 0;
+}
+
+.prev_arrow {
+	left: 0;
 }
 
 .slick-disabled {
