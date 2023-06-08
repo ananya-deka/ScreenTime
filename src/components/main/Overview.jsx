@@ -21,7 +21,9 @@ const Overview = ({ video }) => {
 						key={genre.id}
 						className={`${classes.inline} ${classes.genre}`}
 					>
-						<Link to={`/genres/${video.media_type}/${genre.id}`}>
+						<Link
+							to={`/browse/genres/${video.media_type}/${genre.id}`}
+						>
 							{genre.name}
 						</Link>
 					</li>

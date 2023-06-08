@@ -21,7 +21,7 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 					{!expanded && expandVisible && (
 						<p className={classes.expand}>
 							<Link
-								to={`/genres/${media_type}/${id}`}
+								to={`/browse/genres/${media_type}/${id}`}
 								state={{ items, title }}
 							>
 								See All...

@@ -23,7 +23,7 @@ const Navbar = ({ toggleSearch }) => {
 					</Link>
 				</li>
 				<li className={classes.option}>
-					<Link to={`movies`}>
+					<Link to={`browse/movies`}>
 						<img
 							className={classes.icon}
 							height="25"
@@ -34,7 +34,7 @@ const Navbar = ({ toggleSearch }) => {
 					</Link>
 				</li>
 				<li className={classes.option}>
-					<Link to={`tv`}>
+					<Link to={`browse/tv`}>
 						<img
 							className={classes.icon}
 							height="25"
