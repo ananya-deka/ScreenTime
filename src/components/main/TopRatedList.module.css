@@ -3,8 +3,9 @@
 }
 
 .item {
-	padding: 1rem;
 	scroll-snap-align: start;
+	position: relative;
+	padding: 1rem;
 }
 
 .details {

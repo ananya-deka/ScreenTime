@@ -3,6 +3,11 @@
 	margin-right: 2rem;
 }
 
+.empty {
+	color: whitesmoke;
+	text-align: center;
+}
+
 .item {
 	padding: 1rem;
 	max-width: 25rem;

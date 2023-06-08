@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useGenre } from "../context/genre-context";
 import Select from "react-select";
 

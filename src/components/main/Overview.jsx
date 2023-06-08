@@ -2,6 +2,7 @@ import classes from "./Overview.module.css";
 import AddToPlaylist from "../Playlist/AddToPlaylist";
 import Header from "../UI/Header";
 import { Link } from "react-router-dom";
+import goldStar from "../../assets/gold-star.svg";
 
 const Overview = ({ video }) => {
 	const title = video.title || video.name;
@@ -13,6 +14,11 @@ const Overview = ({ video }) => {
 			<Header>
 				<h2>{title}</h2>
 			</Header>
+			<div className={classes.rating}>
+				{video.vote_average.toFixed(1)}/10
+				<img src={goldStar} width={16} height={16} />
+			</div>
+			<em>{video.tagline}</em>
 
 			<p>{overview}</p>
 			<ul className={classes.genres}>

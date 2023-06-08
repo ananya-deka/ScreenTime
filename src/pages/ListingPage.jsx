@@ -6,7 +6,6 @@ import TopRatedList from "../components/main/TopRatedList";
 import List from "../components/main/List";
 import { useEffect, useState } from "react";
 import Genres from "../components/main/Genres";
-import Select from "react-select";
 import { useGenre } from "../context/genre-context";
 
 const ListingPage = () => {

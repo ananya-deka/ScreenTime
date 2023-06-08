@@ -1,4 +1,9 @@
 .playlist {
 	display: flex;
 	gap: 1em;
+	align-content: flex-start;
+}
+
+.menu {
+	position: relative;
 }

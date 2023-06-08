@@ -15,7 +15,7 @@ const DeleteButton = ({ removeItem, item }) => {
 			<i
 				onMouseOver={(e) => changeColor(e, "red")}
 				onMouseLeave={(e) => changeColor(e, "#ffffff")}
-				className={"fa-solid fa-xmark"}
+				className={"fa-solid fa-xmark fa-xl"}
 				style={{
 					color: "#ffffff",
 					transition: "color 0.5s",

@@ -11,10 +11,8 @@ const PlaylistMenu = forwardRef(
 		);
 
 		const params = useParams();
-		let media_type = "movies";
-		if (params.page === "tv") {
-			media_type = "tv";
-		}
+
+		const media_type = params.page === "tv" ? "tv" : "movies";
 
 		return (
 			<menu
@@ -25,7 +23,12 @@ const PlaylistMenu = forwardRef(
 				{Object.keys(playlists).map((key) => (
 					<li
 						key={key}
-						className={`${classes.menu__items} ${classes.options}`}
+						className={`${classes.menu__items} ${classes.options} ${
+							playlists[key][media_type] &&
+							playlists[key][media_type][params.id]
+								? classes.added
+								: classes.not_added
+						}`}
 						onClick={addToPlaylist.bind(null, key)}
 					>
 						{playlists[key].name}

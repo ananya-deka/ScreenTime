@@ -6,7 +6,7 @@ const requests = {
 	getPopularMovies: `${endpoint}/movie/popular?language=en`,
 	getTopRatedMovies: `${endpoint}/movie/top_rated?language=en`,
 	getMovieDetails: `${endpoint}/movie/`,
-	getCurrentlyPlaying: `${endpoint}/movie/now_playing?region=in`,
+	getCurrentlyPlaying: `${endpoint}/movie/now_playing?region=`,
 	getPopularTv: `${endpoint}/tv/popular?language=en`,
 	getTopRatedTv: `${endpoint}/tv/top_rated?language=en`,
 	getTvDetails: `${endpoint}/tv/`,

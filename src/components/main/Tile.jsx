@@ -2,14 +2,21 @@ import classes from "./Tile.module.css";
 import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
 import { Link } from "react-router-dom";
+import { removeFromPlaylist } from "../../redux/playlistSlice";
+import { useState } from "react";
 
-const Tile = ({ item, imgType, children }) => {
+const Tile = ({ item, imgType, children, deleteButton }) => {
+	const [displayDelete, setDisplayDelete] = useState(false);
 	function imageErrorHandler(e) {
 		e.target.src = fallbackImg;
 	}
 
 	return (
-		<div className={classes.tile}>
+		<div
+			className={classes.tile}
+			onMouseEnter={() => setDisplayDelete(true)}
+			onMouseLeave={() => setDisplayDelete(false)}
+		>
 			<Link
 				to={`/details/${item.media_type}/${item.id}`}
 				state={{ target: item }}
@@ -27,10 +34,22 @@ const Tile = ({ item, imgType, children }) => {
 								imgType === "backdrop" ? "2/1" : "auto",
 						}}
 						onError={imageErrorHandler}
-						alt={item.title || item.original_name}
+						alt={item.title || item.name}
 					/>
 				</div>
 				{imgType === "backdrop" && <div>{children}</div>}
+				{imgType === "poster" && deleteButton && (
+					<div
+						className={`${classes.overlay} ${
+							!displayDelete ? classes.hidden : null
+						}`}
+					>
+						<deleteButton.type
+							{...deleteButton.props}
+							item={item}
+						></deleteButton.type>
+					</div>
+				)}
 			</Link>
 		</div>
 	);

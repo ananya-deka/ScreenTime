@@ -3,11 +3,13 @@ import Header from "../UI/Header";
 import classes from "./List.module.css";
 import Tile from "./tile";
 import DetailsBox from "../UI/DetailBox";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 
 const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 	const [expandVisible, setExpandVisible] = useState(false);
+	const params = useParams();
+	const mediaType = params.page;
 	const displayedItems = expanded ? items : items.slice(10);
 
 	return (
@@ -30,10 +32,15 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 					)}
 				</div>
 			</Header>
-
+			{items.length === 0 && (
+				<p className={classes.empty}>No items to display</p>
+			)}
 			<Grid>
 				{displayedItems.map((item) => (
-					<div key={item.id} className={classes.item}>
+					<div
+						key={`${mediaType}${item.id}`}
+						className={classes.item}
+					>
 						<Tile item={item} imgType={"backdrop"}>
 							<DetailsBox>
 								<div className={classes.details}>
@@ -45,7 +52,7 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 											).getFullYear()}
 										</small>
 									</p>
-									<p>{item.title || item.original_name}</p>
+									<p>{item.title || item.name}</p>
 								</div>
 								{deleteButton && (
 									<deleteButton.type

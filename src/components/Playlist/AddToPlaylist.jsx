@@ -1,7 +1,7 @@
 import classes from "./AddToPlaylist.module.css";
 
 import { useRef, useState } from "react";
-import PlaylistButton from "./PlaylistButton";
+import PlaylistButton from "../UI/PlaylistButton";
 import PlaylistMenu from "./PlaylistMenu";
 import heartLogo from "../../assets/heart-white.svg";
 import cancelLogo from "../../assets/cancel.svg";
@@ -64,14 +64,16 @@ const AddToPlaylist = ({ video }) => {
 	return (
 		<div className={classes.playlist}>
 			<PlaylistButton logo={logo} displayMenu={toggleDisplay} />
-			<PlaylistMenu
-				video={video}
-				display={displayMenu}
-				addToPlaylist={addToPlaylistHandler}
-				playlists={playlists}
-				ref={inputRef}
-				createPlaylist={createPlaylistHandler}
-			/>
+			<div className={classes.menu}>
+				<PlaylistMenu
+					video={video}
+					display={displayMenu}
+					addToPlaylist={addToPlaylistHandler}
+					playlists={playlists}
+					ref={inputRef}
+					createPlaylist={createPlaylistHandler}
+				/>
+			</div>
 		</div>
 	);
 };
