@@ -7,6 +7,7 @@ const initialState = {
 	tv: {},
 	fetchStatus: "idle",
 	updateStatus: "idle",
+	deleteStatus: "idle",
 	error: null,
 };
 
@@ -178,25 +179,25 @@ export const playlistSlice = createSlice({
 
 		builder
 			.addCase(deletePlaylist.pending, (state) => {
-				state.updateStatus = "loading";
+				state.deleteStatus = "loading";
 			})
 			.addCase(deletePlaylist.fulfilled, (state, action) => {
-				state.updateStatus = "idle";
+				state.deleteStatus = "idle";
 
 				const key = action.payload.key;
 				delete state.playlists[key];
 			})
 			.addCase(deletePlaylist.rejected, (state, action) => {
-				state.updateStatus = "failed";
+				state.deleteStatus = "failed";
 				state.error = action.error.message;
 			});
 
 		builder
 			.addCase(removeFromPlaylist.pending, (state) => {
-				state.updateStatus = "loading";
+				state.deleteStatus = "loading";
 			})
 			.addCase(removeFromPlaylist.fulfilled, (state, action) => {
-				state.updateStatus = "idle";
+				state.deleteStatus = "idle";
 
 				const playlistKey = action.payload.playlistKey;
 				const media_type = action.payload.media_type;
@@ -205,7 +206,7 @@ export const playlistSlice = createSlice({
 				delete state.playlists[playlistKey][media_type][videoKey];
 			})
 			.addCase(removeFromPlaylist.rejected, (state, action) => {
-				state.updateStatus = "failed";
+				state.deleteStatus = "failed";
 				state.error = action.error.message;
 			});
 	},

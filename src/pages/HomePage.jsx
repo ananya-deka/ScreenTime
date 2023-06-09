@@ -75,7 +75,6 @@ const HomePage = () => {
 				dataLength={currentlyPlaying.length}
 				next={fetchData}
 				hasMore={hasMore}
-				loader={<h4>Loading...</h4>}
 			>
 				<List
 					title={`Currently In Theatres`}

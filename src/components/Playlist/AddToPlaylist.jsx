@@ -1,6 +1,6 @@
 import classes from "./AddToPlaylist.module.css";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PlaylistButton from "../UI/PlaylistButton";
 import PlaylistMenu from "./PlaylistMenu";
 import heartLogo from "../../assets/heart-white.svg";
@@ -11,6 +11,7 @@ import { updatePlaylist, createPlaylist } from "../../redux/playlistSlice";
 
 const AddToPlaylist = ({ video }) => {
 	const [displayMenu, setDisplayMenu] = useState(false);
+	const [duplicateError, setDuplicateError] = useState(false);
 	const [logo, setLogo] = useState(heartLogo);
 	const inputRef = useRef();
 	const params = useParams();
@@ -20,6 +21,7 @@ const AddToPlaylist = ({ video }) => {
 	function toggleDisplay() {
 		setDisplayMenu((prev) => !prev);
 		setLogo((prev) => (prev === heartLogo ? cancelLogo : heartLogo));
+		setDuplicateError(false);
 		inputRef.current.value = "";
 	}
 
@@ -27,7 +29,12 @@ const AddToPlaylist = ({ video }) => {
 		e.preventDefault();
 		const name = inputRef.current.value;
 		for (let key in playlists) {
-			if (playlists[key].name === name) return;
+			if (playlists[key].name.toLowerCase() === name.toLowerCase()) {
+				setDuplicateError(true);
+				return;
+			} else if (duplicateError) {
+				setDuplicateError(false);
+			}
 		}
 
 		await dispatch(
@@ -72,6 +79,7 @@ const AddToPlaylist = ({ video }) => {
 					playlists={playlists}
 					ref={inputRef}
 					createPlaylist={createPlaylistHandler}
+					duplicateError={duplicateError}
 				/>
 			</div>
 		</div>

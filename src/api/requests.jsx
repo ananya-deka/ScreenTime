@@ -7,6 +7,7 @@ const requests = {
 	getTopRatedMovies: `${endpoint}/movie/top_rated?language=en`,
 	getMovieDetails: `${endpoint}/movie/`,
 	getCurrentlyPlaying: `${endpoint}/movie/now_playing?region=`,
+
 	getPopularTv: `${endpoint}/tv/popular?language=en`,
 	getTopRatedTv: `${endpoint}/tv/top_rated?language=en`,
 	getTvDetails: `${endpoint}/tv/`,
@@ -15,6 +16,13 @@ const requests = {
 	getTvGenres: `${endpoint}/genre/tv/list`,
 	getMovieByGenre: `${endpoint}/discover/movie?language=en-US&sort_by=popularity.desc&with_genres=`,
 	getTvByGenre: `${endpoint}/discover/tv?language=en-US&sort_by=popularity.desc&with_genres=`,
+	getMovieStreamingPlatforms: (id) =>
+		`${endpoint}/movie/${id}/watch/providers`,
+	getTvStreamingPlatforms: (id) =>
+		`${endpoint}/tv/${id}/season/1/watch/providers`,
+	getCredits: (id, mediaType) => `${endpoint}/${mediaType}/${id}/credits`,
+	getRecommendations: (id, mediaType) =>
+		`${endpoint}/${mediaType}/${id}/similar`,
 };
 
 export default requests;

@@ -1,12 +1,16 @@
 import classes from "./Tile.module.css";
 import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { removeFromPlaylist } from "../../redux/playlistSlice";
 import { useState } from "react";
 
 const Tile = ({ item, imgType, children, deleteButton }) => {
 	const [displayDelete, setDisplayDelete] = useState(false);
+	const params = useParams();
+	const mediaType =
+		params.page ||
+		(params.mediaType && (params.mediaType === "movies" ? "movie" : "tv"));
 	function imageErrorHandler(e) {
 		e.target.src = fallbackImg;
 	}
@@ -18,7 +22,7 @@ const Tile = ({ item, imgType, children, deleteButton }) => {
 			onMouseLeave={() => setDisplayDelete(false)}
 		>
 			<Link
-				to={`/details/${item.media_type}/${item.id}`}
+				to={`/details/${mediaType || item.media_type}/${item.id}`}
 				state={{ target: item }}
 			>
 				<div>

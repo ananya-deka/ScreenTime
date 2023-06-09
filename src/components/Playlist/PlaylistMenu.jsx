@@ -1,10 +1,12 @@
-import { forwardRef } from "react";
+import { forwardRef, CSSProperties, useState, useEffect } from "react";
 import classes from "./PlaylistMenu.module.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loader from "../UI/Loader";
 
 const PlaylistMenu = forwardRef(
-	({ display, createPlaylist, addToPlaylist }, ref) => {
+	({ display, createPlaylist, addToPlaylist, duplicateError }, ref) => {
+		const [isLoading, setIsLoading] = useState(false);
 		const playlists = useSelector((state) => state.playlist.playlists);
 		const updateStatus = useSelector(
 			(state) => state.playlist.updateStatus
@@ -14,12 +16,19 @@ const PlaylistMenu = forwardRef(
 
 		const media_type = params.page === "tv" ? "tv" : "movies";
 
+		useEffect(() => {
+			if (updateStatus === "loading") {
+				setIsLoading(true);
+			} else setIsLoading(false);
+		}, [updateStatus]);
+
 		return (
 			<menu
 				className={`${classes.playlist__menu} ${
 					!display ? classes.hidden : ""
 				}`}
 			>
+				<Loader loading={isLoading} />
 				{Object.keys(playlists).map((key) => (
 					<li
 						key={key}
@@ -37,7 +46,9 @@ const PlaylistMenu = forwardRef(
 				<li className={classes.menu__items}>
 					<form className={classes.add} onSubmit={createPlaylist}>
 						<input
-							className={classes.new_playlist}
+							className={`${classes.new_playlist} ${
+								duplicateError ? classes.error : null
+							}`}
 							type="text"
 							name="playlist"
 							placeholder="Create Playlist"
@@ -51,11 +62,6 @@ const PlaylistMenu = forwardRef(
 						</button>
 					</form>
 				</li>
-				{updateStatus === "loading" && (
-					<li className={`${classes.menu__items} ${classes.options}`}>
-						Please Wait...
-					</li>
-				)}
 			</menu>
 		);
 	}

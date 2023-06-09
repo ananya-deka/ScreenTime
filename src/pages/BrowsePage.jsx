@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useGenre } from "../context/genre-context";
+// import Select from "../components/UI/Select";
 import Select from "react-select";
 
 const BrowsePage = () => {
@@ -37,9 +38,7 @@ const BrowsePage = () => {
 
 	return (
 		<>
-			<div>
-				<Select onChange={switchGenres} options={options} />
-			</div>
+			<Select onChange={switchGenres} options={options} />
 			<Outlet />
 		</>
 	);

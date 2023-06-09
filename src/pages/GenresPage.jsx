@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import List from "../components/main/List";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import requests from "../api/requests";
 import axios from "../api/axios";
 import { useGenre } from "../context/genre-context";
@@ -11,31 +11,31 @@ const GenresPage = () => {
 	const [items, setItems] = useState([]);
 	const [title, setTitle] = useState("");
 	const [currentPage, setCurrentPage] = useState(1);
-	const media_type = params.page;
+	const [hasMore, setHasMore] = useState(true);
+	const mediaType = params.page;
 	const genreId = params.genreId;
 	const { movieGenres, tvGenres } = useGenre();
 
 	useEffect(() => {
 		setCurrentPage(1);
-		setItems([]);
-		if (genreId === "popular") {
-			setTitle("Popular Right Now");
-		} else {
+
+		if (
+			movieGenres.length > 0 &&
+			tvGenres.length > 0 &&
+			genreId !== "popular"
+		) {
 			setTitle(
-				media_type === "movie"
+				mediaType === "movie"
 					? movieGenres.find((genre) => genre.id === +genreId).name
 					: tvGenres.find((genre) => genre.id === +genreId).name
 			);
 		}
-		console.log(movieGenres, genreId);
-	}, [media_type, genreId]);
+	}, [movieGenres, tvGenres, mediaType, genreId]);
 
 	useEffect(() => {
 		async function getItems() {
-			console.log(currentPage);
-
 			const response =
-				media_type === "movie"
+				mediaType === "movie"
 					? genreId === "popular"
 						? await axios.get(
 								`${requests.getPopularMovies}&page=${currentPage}`
@@ -53,17 +53,20 @@ const GenresPage = () => {
 			const data = await response.data;
 			const results = data.results.map((result) => ({
 				...result,
-				media_type,
+				media_type: mediaType,
 			}));
 
 			setItems((items) =>
 				currentPage === 1 ? results : [...items, ...results]
 			);
+
+			setHasMore(data.total_pages !== currentPage);
+
 			return response;
 		}
 
 		getItems();
-	}, [currentPage]);
+	}, [currentPage, mediaType, genreId]);
 
 	function fetchData() {
 		setCurrentPage((current) => ++current);
@@ -74,8 +77,7 @@ const GenresPage = () => {
 			<InfiniteScroll
 				dataLength={items.length}
 				next={fetchData}
-				hasMore={true}
-				loader={<h4>Loading...</h4>}
+				hasMore={hasMore}
 			>
 				<List title={title} items={items} expanded={true} />
 			</InfiniteScroll>

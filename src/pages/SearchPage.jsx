@@ -1,6 +1,6 @@
 import requests from "../api/requests";
 import axios from "../api/axios";
-import { Navigate, useLoaderData, useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 import List from "../components/main/List";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";

@@ -1,6 +1,13 @@
 .details {
+	color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+}
+
+.info {
 	display: flex;
 	width: 100%;
+	box-shadow: 0 2px 8px #000;
 }
 
 .poster {
@@ -17,4 +24,59 @@
 	flex-direction: column;
 	gap: 2em;
 	color: whitesmoke;
+}
+
+.info_box {
+	margin-top: 2rem;
+	padding: 1em;
+}
+
+.info__header {
+	text-transform: uppercase;
+	margin-bottom: 1em;
+}
+
+.tiles {
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.cast {
+	list-style: none;
+	display: flex;
+	gap: 3rem;
+	flex-wrap: wrap;
+}
+
+.tiles > li,
+.cast__member {
+	box-shadow: 0 2px 8px #000;
+}
+
+.members {
+	display: flex;
+	flex-direction: column;
+}
+
+.cast__member {
+	max-width: 10rem;
+}
+
+.cast__img {
+	object-fit: contain;
+	width: 100%;
+	display: block;
+}
+
+.cast_info {
+	padding: 0.3em;
+	text-align: center;
+	display: grid;
+	gap: 1rem;
+}
+
+.unavailable {
+	color: grey;
 }

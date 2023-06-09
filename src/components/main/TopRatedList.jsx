@@ -10,18 +10,20 @@ const TopRatedList = ({ title, items, removeFromPlaylist, deleteButton }) => {
 			<Header>
 				<h2>{title}</h2>
 			</Header>
-
 			<Carousel>
-				{items.map((item) => (
-					<div key={item.id} className={classes.item}>
-						<Tile
-							item={item}
-							imgType={"poster"}
-							removeFromPlaylist={removeFromPlaylist}
-							deleteButton={deleteButton}
-						></Tile>
-					</div>
-				))}
+				{items.map(
+					(item) =>
+						item.poster_path && (
+							<div key={item.id} className={classes.item}>
+								<Tile
+									item={item}
+									imgType={"poster"}
+									removeFromPlaylist={removeFromPlaylist}
+									deleteButton={deleteButton}
+								></Tile>
+							</div>
+						)
+				)}
 			</Carousel>
 		</section>
 	);

@@ -46,10 +46,12 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 								<div className={classes.details}>
 									<p className={classes.year}>
 										<small>
-											{new Date(
-												item.release_date ||
-													item.first_air_date
-											).getFullYear()}
+											{(item.release_date ||
+												item.first_air_date) &&
+												new Date(
+													item.release_date ||
+														item.first_air_date
+												).getFullYear()}
 										</small>
 									</p>
 									<p>{item.title || item.name}</p>

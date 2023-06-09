@@ -38,17 +38,14 @@
 
 .new_playlist {
 	padding: 0.5em;
-	border: none;
+	border: 1px solid transparent;
+	border-bottom-left-radius: 0.5em;
 	background-color: transparent;
 	font: inherit;
 }
 
 .new_playlist:focus {
 	outline: none;
-}
-
-.new_playlist:hover {
-	background-color: transparent;
 }
 
 .add {
@@ -76,14 +73,14 @@
 	color: whitesmoke;
 }
 
-.added:hover {
-	background-color: rgba(3, 52, 79, 0.663);
-}
-
 .not_added {
 	background-color: whitesmoke;
 }
 
 .not_added:hover {
 	background-color: rgb(186, 181, 181);
+}
+
+.error {
+	background-color: rgb(239, 172, 172);
 }

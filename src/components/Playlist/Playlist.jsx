@@ -1,14 +1,12 @@
 import classes from "./Playlist.module.css";
 
 import { deletePlaylist, removeFromPlaylist } from "../../redux/playlistSlice";
-import { useDispatch, useSelector } from "react-redux";
-import List from "../main/List";
+import { useDispatch } from "react-redux";
 import DeleteButton from "../UI/DeleteButton";
 import TopRatedList from "../main/TopRatedList";
 
 const Playlist = ({ id, title, videos }) => {
 	const dispatch = useDispatch();
-	const status = useSelector((state) => state.playlist.updateStatus);
 
 	async function deletePlaylistHandler() {
 		await dispatch(
@@ -42,7 +40,6 @@ const Playlist = ({ id, title, videos }) => {
 
 	return (
 		<section className={classes.playlist}>
-			{status === "loading" && <p>Please wait...</p>}
 			<TopRatedList
 				items={videos}
 				title={header}
