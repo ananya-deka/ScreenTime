@@ -1,5 +1,6 @@
 .content {
 	margin: 2rem;
+	margin-top: 6.6rem;
 }
 
 .navbar {
@@ -24,5 +25,6 @@
 
 	.content {
 		margin-left: 8rem;
+		margin-top: 3rem;
 	}
 }

@@ -100,10 +100,10 @@ const Details = ({ video }) => {
 					</li>
 				</ul>
 			</section>
-			{recommendations && recommendations.length > 0 && (
+			{recommendations && recommendations.length && (
 				<section className={classes.info_box}>
 					<header className={classes.info__header}>
-						You might also like
+						<h2>You might also like</h2>
 					</header>
 					<TopRatedList items={recommendations} />
 				</section>

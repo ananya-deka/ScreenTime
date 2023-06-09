@@ -2,10 +2,11 @@ import requests from "../api/requests";
 import axios from "../api/axios";
 import { useEffect, useState } from "react";
 import List from "../components/main/List";
-import Select from "react-select";
+// import Select from "react-select";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Select from "../components/UI/Select";
 
 countries.registerLocale(enLocale);
 const countryObj = countries.getNames("en", { select: "official" });
@@ -65,7 +66,7 @@ const HomePage = () => {
 	}
 
 	return (
-		<>
+		<div style={{ display: "flex", flexDirection: "column" }}>
 			<Select
 				onChange={switchRegion}
 				options={options}
@@ -82,7 +83,7 @@ const HomePage = () => {
 					expanded={true}
 				/>
 			</InfiniteScroll>
-		</>
+		</div>
 	);
 };
 

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useGenre } from "../context/genre-context";
-// import Select from "../components/UI/Select";
-import Select from "react-select";
+import Select from "../components/UI/Select";
 
 const BrowsePage = () => {
 	const params = useParams();
@@ -23,6 +22,12 @@ const BrowsePage = () => {
 	}, [genres]);
 
 	useEffect(() => {
+		if (params.mediaType) {
+			setSelected(null);
+		}
+	}, [params.mediaType]);
+
+	useEffect(() => {
 		if (selected) {
 			navigate(
 				`/browse/genres/${
@@ -37,10 +42,16 @@ const BrowsePage = () => {
 	}
 
 	return (
-		<>
-			<Select onChange={switchGenres} options={options} />
-			<Outlet />
-		</>
+		<div style={{ display: "flex", flexDirection: "column" }}>
+			<Select
+				placeholder={"Browse by Genre..."}
+				onChange={switchGenres}
+				options={options}
+				value={selected}
+			/>
+
+			<Outlet setSelected={setSelected} />
+		</div>
 	);
 };
 
