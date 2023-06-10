@@ -27,8 +27,9 @@ const Tile = ({ item, imgType, children, deleteButton }) => {
 				className={classes.target}
 			>
 				<div>
-					<LazyLoadImage
+					<img
 						className={classes.thumbnail}
+						loading="lazy"
 						src={`${base}${
 							imgType === "poster"
 								? item.poster_path
