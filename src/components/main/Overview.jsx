@@ -8,7 +8,6 @@ const Overview = ({ video }) => {
 	const title = video.title || video.name;
 	const overview = video.overview || "No overview available for this title.";
 	const release_date = video.release_date || video.first_air_date || "N/A";
-	console.log(video);
 	return (
 		<>
 			<Header>
@@ -45,7 +44,12 @@ const Overview = ({ video }) => {
 					{release_date}
 				</li>
 				<li className={classes.inline}>
-					Languages:
+					{!video.spoken_languages ||
+						(video.spoken_languages.length === 0 &&
+							"Languages: N/A")}
+					{video.spoken_languages &&
+						video.spoken_languages.length > 0 &&
+						"Languages: "}
 					<ul className={classes.inline}>
 						{video.spoken_languages.map((lang, idx) => (
 							<li

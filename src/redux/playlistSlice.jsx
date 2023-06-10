@@ -29,13 +29,20 @@ export const createPlaylist = createAsyncThunk(
 		const video = payload.video;
 		const media_type = payload.media_type;
 
-		const movies = media_type === "movie" ? { [video.id]: video } : {};
-		const tv = media_type === "tv" ? { [video.id]: video } : {};
+		const movies =
+			media_type === "movie"
+				? { [video.id]: { video, creation_time: new Date() } }
+				: {};
+		const tv =
+			media_type === "tv"
+				? { [video.id]: { video, creation_time: new Date() } }
+				: {};
 
 		const newEntry = {
 			name,
 			movies,
 			tv,
+			creation_time: new Date(),
 		};
 
 		const response = await fetch(
@@ -59,9 +66,12 @@ export const updatePlaylist = createAsyncThunk(
 		const video = payload.video;
 		const key = payload.key;
 		const state = getState().playlist;
-		let updatedEntry = { ...state.playlists[key] };
 
-		const newEntry = { [video.id]: video };
+		let updatedEntry = {
+			...state.playlists[key],
+		};
+
+		const newEntry = { [video.id]: { video, creation_time: new Date() } };
 		if (media_type === "movie") {
 			if (updatedEntry.movies) {
 				updatedEntry.movies = { ...updatedEntry.movies, ...newEntry };

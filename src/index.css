@@ -10,6 +10,7 @@ body {
 	background-color: rgba(0, 5, 13, 0.959);
 	padding-bottom: 2em;
 	overflow-x: hidden;
+	font-family: "Lora", serif;
 }
 
 img {

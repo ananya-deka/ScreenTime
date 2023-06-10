@@ -3,11 +3,10 @@
 }
 
 .arrow {
-	position: absolute;
 	right: 0;
-	z-index: 5;
 	height: 20%;
 	width: auto;
+	z-index: 2;
 }
 
 .prev {

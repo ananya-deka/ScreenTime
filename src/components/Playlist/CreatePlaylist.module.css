@@ -1,0 +1,13 @@
+.create_button {
+	margin-bottom: 2rem;
+	padding: 0.5em 1em;
+	background-color: #001940;
+	border: none;
+	color: whitesmoke;
+	border-radius: 0.3em;
+	box-shadow: 0 2px 8px #000;
+}
+
+.create_button:hover {
+	background-color: #001537;
+}

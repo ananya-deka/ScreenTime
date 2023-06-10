@@ -41,6 +41,7 @@ const Carousel = (props) => {
 				settings: {
 					slidesToShow: 5,
 					slidesToScroll: 5,
+					infinite: props.children.length >= 5,
 				},
 			},
 			{
@@ -48,6 +49,7 @@ const Carousel = (props) => {
 				settings: {
 					slidesToShow: 4,
 					slidesToScroll: 4,
+					infinite: props.children.length >= 4,
 				},
 			},
 			{
@@ -55,6 +57,7 @@ const Carousel = (props) => {
 				settings: {
 					slidesToShow: 2,
 					slidesToScroll: 2,
+					infinite: props.children.length >= 2,
 				},
 			},
 		],

@@ -1,11 +1,25 @@
 .list {
 	margin-bottom: 2rem;
 	margin-right: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.title {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-end;
+	cursor: pointer;
+}
+
+.expanded {
+	color: grey;
 }
 
 .empty {
 	color: whitesmoke;
 	text-align: center;
+	width: 100%;
 }
 
 .item {

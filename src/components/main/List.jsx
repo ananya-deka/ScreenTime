@@ -9,7 +9,7 @@ import { useState } from "react";
 const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 	const [expandVisible, setExpandVisible] = useState(false);
 	const params = useParams();
-	const mediaType = params.page;
+	const mediaType = params.mediaType;
 	const displayedItems = expanded ? items : items.slice(10);
 
 	return (
@@ -18,24 +18,30 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 				<div
 					onMouseEnter={() => setExpandVisible(true)}
 					onMouseLeave={() => setExpandVisible(false)}
+					className={classes.title}
 				>
-					<h2>{title}</h2>
-					{!expanded && expandVisible && (
-						<p className={classes.expand}>
-							<Link
-								to={`/browse/genres/${media_type}/${id}`}
-								state={{ items, title }}
-							>
-								See All...
-							</Link>
-						</p>
-					)}
+					<h3>{title}</h3>
+					<div>
+						{!expanded && expandVisible && (
+							<p className={classes.expanded}>
+								<Link
+									to={`/browse/genres/${
+										params.mediaType === "movies"
+											? "movie"
+											: "tv"
+									}/${id}`}
+								>
+									See All...
+								</Link>
+							</p>
+						)}
+					</div>
 				</div>
 			</Header>
 			{items.length === 0 && (
-				<p className={classes.empty}>No items to display</p>
+				<div className={classes.empty}>Nothing to display here</div>
 			)}
-			<Grid>
+			<Grid grid={displayedItems.length > 6}>
 				{displayedItems.map((item) => (
 					<div
 						key={`${mediaType}${item.id}`}

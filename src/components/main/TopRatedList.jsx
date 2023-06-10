@@ -3,12 +3,44 @@ import classes from "./TopRatedList.module.css";
 import Tile from "./tile";
 import Carousel from "../Layout/Carousel";
 import Header from "../UI/Header";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
-const TopRatedList = ({ title, items, removeFromPlaylist, deleteButton }) => {
+const TopRatedList = ({
+	title,
+	items,
+	removeFromPlaylist,
+	deleteButton,
+	expanded,
+}) => {
+	const [expandVisible, setExpandVisible] = useState(false);
+	const params = useParams();
+
 	return (
 		<section className={classes.group}>
 			<Header>
-				<h2>{title}</h2>
+				<div
+					onMouseEnter={() => setExpandVisible(true)}
+					onMouseLeave={() => setExpandVisible(false)}
+					className={classes.title}
+				>
+					<h3>{title}</h3>
+					<div>
+						{!expanded && expandVisible && (
+							<p className={classes.expanded}>
+								<Link
+									to={`/browse/genres/${
+										params.mediaType === "movies"
+											? "movie"
+											: "tv"
+									}/toprated`}
+								>
+									See All...
+								</Link>
+							</p>
+						)}
+					</div>
+				</div>
 			</Header>
 			<Carousel>
 				{items.map(

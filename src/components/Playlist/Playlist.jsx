@@ -7,7 +7,6 @@ import TopRatedList from "../main/TopRatedList";
 
 const Playlist = ({ id, title, videos }) => {
 	const dispatch = useDispatch();
-
 	async function deletePlaylistHandler() {
 		await dispatch(
 			deletePlaylist({
@@ -49,6 +48,9 @@ const Playlist = ({ id, title, videos }) => {
 				}
 				expanded={true}
 			/>
+			{videos.length === 0 && (
+				<div className={classes.empty}>Nothing to show here.</div>
+			)}
 		</section>
 	);
 };

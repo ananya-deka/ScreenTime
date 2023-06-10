@@ -4,16 +4,22 @@ import { useLoaderData, Link, useNavigate, useParams } from "react-router-dom";
 
 import TopRatedList from "../components/main/TopRatedList";
 import List from "../components/main/List";
-import { useEffect, useState } from "react";
 import Genres from "../components/main/Genres";
 import { useGenre } from "../context/genre-context";
+import Header from "../components/UI/Header";
+import { useEffect, useState } from "react";
 
 const ListingPage = () => {
 	const params = useParams();
 	const { topRated, popular } = useLoaderData();
 	const { movieGenres, tvGenres } = useGenre();
+	const [title, setTitle] = useState("");
 	const mediaType = params.mediaType;
 	const genres = mediaType === "movie" ? movieGenres : tvGenres;
+
+	useEffect(() => {
+		setTitle(params.mediaType === "movies" ? "Movies" : "TV Shows");
+	}, [params.mediaType]);
 
 	return (
 		<>

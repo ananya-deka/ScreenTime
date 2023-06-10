@@ -2,4 +2,12 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
 	color: whitesmoke;
+	width: 100%;
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+	color: whitesmoke;
+	width: 100%;
 }

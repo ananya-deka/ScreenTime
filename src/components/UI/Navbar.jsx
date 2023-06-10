@@ -2,64 +2,128 @@ import classes from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 import homeLogo from "../../assets/home-filled-svgrepo-com.svg";
-import movieLogo from "../../assets/movie-play-button-svgrepo-com.svg";
-import tvLogo from "../../assets/tv-free-2-svgrepo-com.svg";
-import bookmarkLogo from "../../assets/bookmark-svgrepo-com.svg";
+import movieLogo from "../../assets/movie-logo.svg";
+import tvLogo from "../../assets/tv-logo.svg";
+import bookmarkLogo from "../../assets/heart-logo.svg";
 import searchLogo from "../../assets/search-svgrepo-com.svg";
+import { useEffect, useState } from "react";
 
 const Navbar = ({ toggleSearch }) => {
+	const [hovered, setHovered] = useState("");
+	const [selected, setSelected] = useState("");
+
 	return (
 		<div className={classes.navbar}>
 			<ul className={classes.options}>
-				<li className={classes.option}>
-					<Link to={`/`}>
+				<Link to={`/`}>
+					<li
+						className={`${`${classes.option} ${
+							selected === "home" && hovered !== "home"
+								? classes.selected
+								: null
+						}`}`}
+						onClick={() => setSelected("home")}
+						onMouseEnter={() => setHovered("home")}
+						onMouseLeave={() => setHovered("")}
+					>
+						{hovered === "home" && <p>Home</p>}
+
 						<img
 							className={classes.icon}
-							height="25"
-							width="25"
+							height="23"
+							width="23"
 							src={homeLogo}
 							alt="Home"
 						/>
-					</Link>
-				</li>
-				<li className={classes.option}>
-					<Link to={`browse/movies`}>
+					</li>
+				</Link>
+				<Link to={`browse/movies`}>
+					<li
+						className={`${classes.option} ${
+							selected === "movies" && hovered !== "movies"
+								? classes.selected
+								: null
+						}`}
+						onMouseEnter={() => setHovered("movies")}
+						onMouseLeave={() => setHovered("")}
+						onClick={() => setSelected("movies")}
+					>
+						{hovered === "movies" && <p>Movies</p>}
+
 						<img
 							className={classes.icon}
-							height="25"
-							width="25"
+							height="23"
+							width="23"
 							src={movieLogo}
 							alt="Movies"
 						/>
-					</Link>
-				</li>
-				<li className={classes.option}>
-					<Link to={`browse/tv`}>
+					</li>
+				</Link>
+				<Link to={`browse/tv`}>
+					<li
+						className={`${classes.option} ${
+							selected === "tv" && hovered !== "tv"
+								? classes.selected
+								: null
+						}`}
+						onMouseEnter={() => setHovered("tv")}
+						onMouseLeave={() => setHovered("")}
+						onClick={() => setSelected("tv")}
+					>
+						{hovered === "tv" && <p>TV</p>}
+
 						<img
 							className={classes.icon}
-							height="25"
-							width="25"
+							height="23"
+							width="23"
 							src={tvLogo}
 							alt="TV Shows"
 						/>
-					</Link>
-				</li>
-				<li className={classes.option}>
-					<Link to={`playlists`}>
+					</li>
+				</Link>
+				<Link to={`playlists`}>
+					<li
+						className={`${classes.option} ${
+							selected === "playlists" && hovered !== "playlists"
+								? classes.selected
+								: null
+						}`}
+						onMouseEnter={() => setHovered("playlists")}
+						onMouseLeave={() => setHovered("")}
+						onClick={() => setSelected("playlists")}
+					>
+						{hovered === "playlists" && <p>Playlists</p>}
+
 						<img
 							className={classes.icon}
-							height="25"
-							width="25"
+							height="23"
+							width="23"
 							src={bookmarkLogo}
 							alt="Bookmarks"
 						/>
-					</Link>
-				</li>
-				<li className={classes.option} onClick={toggleSearch}>
+					</li>
+				</Link>
+
+				<li
+					className={`${classes.option} ${
+						selected === "search" && hovered !== "search"
+							? classes.selected
+							: null
+					}`}
+					onMouseEnter={() => setHovered("search")}
+					onMouseLeave={() => setHovered("")}
+					onClick={() => {
+						toggleSearch();
+
+						setSelected("search");
+					}}
+				>
+					{hovered === "search" && <p>Search</p>}
+
 					<img
 						className={classes.icon}
-						height="25"
-						width="25"
+						height="23"
+						width="23"
 						src={searchLogo}
 						alt="Search"
 					/>

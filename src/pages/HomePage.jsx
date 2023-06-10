@@ -2,7 +2,6 @@ import requests from "../api/requests";
 import axios from "../api/axios";
 import { useEffect, useState } from "react";
 import List from "../components/main/List";
-// import Select from "react-select";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import InfiniteScroll from "react-infinite-scroll-component";

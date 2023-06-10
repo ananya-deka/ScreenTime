@@ -4,6 +4,7 @@ import { Navigate, useSearchParams } from "react-router-dom";
 import List from "../components/main/List";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Loader from "../components/UI/Loader";
 
 const SearchPage = () => {
 	const [searchResults, setSearchResults] = useState([]);
@@ -26,13 +27,17 @@ const SearchPage = () => {
 				(media) => media.media_type !== "person"
 			);
 
-			setSearchResults((current) =>
+			setSearchResults(
 				currentPage === 1 ? results : [...searchResults, ...results]
 			);
 			setHasMore(currentPage !== response.data.total_pages);
 		}
 
-		getSearchResults();
+		const getResults = setTimeout(() => {
+			getSearchResults();
+		}, 300);
+
+		return () => clearTimeout(getResults);
 	}, [query, currentPage]);
 
 	function fetchData() {
@@ -44,7 +49,6 @@ const SearchPage = () => {
 			dataLength={searchResults.length}
 			next={fetchData}
 			hasMore={hasMore}
-			loader={<h4>Loading...</h4>}
 		>
 			<List items={searchResults} expanded={true}></List>
 		</InfiniteScroll>

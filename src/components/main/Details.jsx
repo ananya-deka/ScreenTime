@@ -57,6 +57,7 @@ const Details = ({ video }) => {
 			const data = response.data;
 
 			setRecommendations(data.results);
+			console.log(data.results);
 		}
 
 		getStreamingPlatforms();
@@ -100,7 +101,8 @@ const Details = ({ video }) => {
 					</li>
 				</ul>
 			</section>
-			{recommendations && recommendations.length && (
+
+			{recommendations && recommendations.length > 0 && (
 				<section className={classes.info_box}>
 					<header className={classes.info__header}>
 						<h2>You might also like</h2>
@@ -108,13 +110,13 @@ const Details = ({ video }) => {
 					<TopRatedList items={recommendations} />
 				</section>
 			)}
-			<section className={classes.info_box}>
-				<header className={classes.info__header}>
-					<h2>Cast</h2>
-				</header>
-				<ul className={classes.cast}>
-					{cast &&
-						cast.map((member) => (
+			{cast && cast.length > 0 && (
+				<section className={classes.info_box}>
+					<header className={classes.info__header}>
+						<h2>Cast</h2>
+					</header>
+					<ul className={classes.cast}>
+						{cast.map((member) => (
 							<li
 								className={classes.cast__member}
 								key={member.id}
@@ -131,8 +133,9 @@ const Details = ({ video }) => {
 								</div>
 							</li>
 						))}
-				</ul>
-			</section>
+					</ul>
+				</section>
+			)}
 		</div>
 	);
 };
