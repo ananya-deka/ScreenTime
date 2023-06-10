@@ -2,7 +2,6 @@ import classes from "./Tile.module.css";
 import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
 import { Link, useParams } from "react-router-dom";
-import { removeFromPlaylist } from "../../redux/playlistSlice";
 import { useState } from "react";
 
 const Tile = ({ item, imgType, children, deleteButton }) => {

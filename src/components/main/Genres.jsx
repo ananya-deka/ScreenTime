@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import classes from "./Genres.module.css";
 import requests from "../../api/requests";
 import axios from "../../api/axios";
 import List from "./List";

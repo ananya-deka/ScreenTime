@@ -1,6 +1,6 @@
 import classes from "./TopRatedList.module.css";
 
-import Tile from "./tile";
+import Tile from "./Tile";
 import Carousel from "../Layout/Carousel";
 import Header from "../UI/Header";
 import { useState } from "react";

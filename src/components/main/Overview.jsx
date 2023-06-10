@@ -1,7 +1,7 @@
 import classes from "./Overview.module.css";
 import AddToPlaylist from "../Playlist/AddToPlaylist";
 import Header from "../UI/Header";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import goldStar from "../../assets/gold-star.svg";
 
 const Overview = ({ video }) => {
