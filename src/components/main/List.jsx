@@ -1,7 +1,7 @@
 import Grid from "../Layout/Grid";
 import Header from "../UI/Header";
 import classes from "./List.module.css";
-import Tile from "./tile";
+import Tile from "./Tile";
 import DetailsBox from "../UI/DetailBox";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
