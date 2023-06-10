@@ -2,9 +2,9 @@ import requests from "../api/requests";
 import axios from "../api/axios";
 import { Navigate, useSearchParams } from "react-router-dom";
 import List from "../components/main/List";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Loader from "../components/UI/Loader";
+import debounce from "lodash.debounce";
 
 const SearchPage = () => {
 	const [searchResults, setSearchResults] = useState([]);
@@ -18,27 +18,34 @@ const SearchPage = () => {
 		setHasMore(true);
 	}, [query]);
 
+	async function getSearchResults(query, currentPage) {
+		const response = await axios.get(
+			`${requests.search}${query}&page=${currentPage}`
+		);
+		const results = response.data.results.filter(
+			(media) => media.media_type !== "person"
+		);
+
+		setSearchResults(
+			currentPage === 1 ? results : [...searchResults, ...results]
+		);
+		setHasMore(currentPage !== response.data.total_pages);
+	}
+
+	const debouncedGetSearchResults = useCallback(
+		debounce(
+			(query, currentPage) => getSearchResults(query, currentPage),
+			1000
+		),
+		[]
+	);
+
 	useEffect(() => {
-		async function getSearchResults() {
-			const response = await axios.get(
-				`${requests.search}${query}&page=${currentPage}`
-			);
-			const results = response.data.results.filter(
-				(media) => media.media_type !== "person"
-			);
-
-			setSearchResults(
-				currentPage === 1 ? results : [...searchResults, ...results]
-			);
-			setHasMore(currentPage !== response.data.total_pages);
-		}
-
-		const getResults = setTimeout(() => {
-			getSearchResults();
-		}, 300);
-
-		return () => clearTimeout(getResults);
-	}, [query, currentPage]);
+		debouncedGetSearchResults(query, currentPage);
+		return () => {
+			debouncedGetSearchResults.cancel();
+		};
+	}, [debouncedGetSearchResults, query, currentPage]);
 
 	function fetchData() {
 		setCurrentPage((current) => ++current);
@@ -56,17 +63,5 @@ const SearchPage = () => {
 		<Navigate to="/" replace />
 	);
 };
-
-export async function loader({ request }) {
-	const url = new URL(request.url);
-	const query = url.searchParams.get("q");
-
-	const response = await axios.get(`${requests.search}${query}`);
-	const searchResults = response.data.results.filter(
-		(media) => media.backdrop_path !== null && media.media_type !== "person"
-	);
-
-	return { searchResults };
-}
 
 export default SearchPage;

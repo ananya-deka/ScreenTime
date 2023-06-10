@@ -17,7 +17,6 @@ const BrowsePage = () => {
 
 	useEffect(() => {
 		if (params.page) {
-			console.log("page");
 			setGenres(params.page === "movie" ? movieGenres : tvGenres);
 		}
 	}, [params.page, movieGenres, tvGenres]);
@@ -30,7 +29,6 @@ const BrowsePage = () => {
 	}, [params.mediaType, movieGenres, tvGenres]);
 
 	useEffect(() => {
-		console.log("genre");
 		const genreOptions = genres.map((genre) => ({
 			value: genre.name,
 			label: genre.name,
@@ -50,7 +48,6 @@ const BrowsePage = () => {
 			} else if (params.genreId === "toprated") {
 				setTitle("Top Rated");
 			} else {
-				console.log(params.genreId, options);
 				setTitle(
 					options.find((option) => option.id === +params.genreId)
 						.value

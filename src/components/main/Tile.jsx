@@ -3,6 +3,7 @@ import { imageBaseUrl as base } from "../../api/requests";
 import fallbackImg from "../../assets/cinema-g4bbaeecd6_640.jpg";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Tile = ({ item, imgType, children, deleteButton }) => {
 	const [displayDelete, setDisplayDelete] = useState(false);
@@ -23,9 +24,10 @@ const Tile = ({ item, imgType, children, deleteButton }) => {
 			<Link
 				to={`/details/${mediaType || item.media_type}/${item.id}`}
 				state={{ target: item }}
+				className={classes.target}
 			>
 				<div>
-					<img
+					<LazyLoadImage
 						className={classes.thumbnail}
 						src={`${base}${
 							imgType === "poster"
@@ -40,7 +42,9 @@ const Tile = ({ item, imgType, children, deleteButton }) => {
 						alt={item.title || item.name}
 					/>
 				</div>
-				{imgType === "backdrop" && <div>{children}</div>}
+				{imgType === "backdrop" && (
+					<div className={classes.innerbox}>{children}</div>
+				)}
 				{imgType === "poster" && deleteButton && (
 					<div
 						className={`${classes.overlay} ${

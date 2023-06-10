@@ -128,9 +128,7 @@ export const removeFromPlaylist = createAsyncThunk(
 				method: "delete",
 			}
 		);
-		console.log(
-			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${playlistKey}/${media_type}/${videoKey}.json`
-		);
+
 		return { playlistKey, media_type, videoKey };
 	}
 );

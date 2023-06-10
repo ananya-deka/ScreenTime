@@ -16,7 +16,6 @@ const Playlist = ({ id, title, videos }) => {
 	}
 
 	async function removeFromPlaylistHandler(e, media_type, videoKey) {
-		console.log("here");
 		e.preventDefault();
 		media_type = media_type === "tv" ? media_type : "movies";
 		await dispatch(

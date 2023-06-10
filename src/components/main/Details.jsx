@@ -33,7 +33,6 @@ const Details = ({ video }) => {
 			const platforms = data.results[region];
 			const streamingPlatforms = platforms ? platforms.flatrate : [];
 
-			console.log(data);
 			if (!streamingPlatforms || streamingPlatforms.length === 0) {
 				setUnavailableMessage("Not available on any platform");
 			} else setUnavailableMessage("");
@@ -57,7 +56,6 @@ const Details = ({ video }) => {
 			const data = response.data;
 
 			setRecommendations(data.results);
-			console.log(data.results);
 		}
 
 		getStreamingPlatforms();

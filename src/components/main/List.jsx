@@ -43,10 +43,7 @@ const List = ({ title, items, deleteButton, expanded, id, media_type }) => {
 			)}
 			<Grid grid={displayedItems.length > 6}>
 				{displayedItems.map((item) => (
-					<div
-						key={`${mediaType}${item.id}`}
-						className={classes.item}
-					>
+					<div key={item.id} className={classes.item}>
 						<Tile item={item} imgType={"backdrop"}>
 							<DetailsBox>
 								<div className={classes.details}>

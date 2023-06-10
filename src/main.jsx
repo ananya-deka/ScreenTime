@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App.jsx";
 import HomePage from "./pages/HomePage";
-import SearchPage, { loader as searchLoader } from "./pages/SearchPage";
+import SearchPage from "./pages/SearchPage";
 import DetailsPage, { loader as detailsLoader } from "./pages/DetailsPage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 			{
 				path: "search",
 				element: <SearchPage />,
-				loader: searchLoader,
+				// loader: searchLoader,
 			},
 			{
 				path: "details/:page/:id",
