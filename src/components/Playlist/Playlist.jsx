@@ -3,7 +3,7 @@ import classes from "./Playlist.module.css";
 import { deletePlaylist, removeFromPlaylist } from "../../redux/playlistSlice";
 import { useDispatch } from "react-redux";
 import DeleteButton from "../UI/DeleteButton";
-import TopRatedList from "../main/TopRatedList";
+import CarouselList from "../main/CarouselList";
 
 const Playlist = ({ id, title, videos }) => {
 	const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const Playlist = ({ id, title, videos }) => {
 
 	return (
 		<section className={classes.playlist}>
-			<TopRatedList
+			<CarouselList
 				items={videos}
 				title={header}
 				removeFromPlaylist={removeFromPlaylistHandler}

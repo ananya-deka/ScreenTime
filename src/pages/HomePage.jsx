@@ -9,22 +9,18 @@ import Select from "../components/UI/Select";
 
 countries.registerLocale(enLocale);
 const countryObj = countries.getNames("en", { select: "official" });
-const countryOptions = Object.entries(countryObj).map((country) => ({
+const options = Object.entries(countryObj).map((country) => ({
 	label: country[1],
 	value: country[1],
 	region_key: country[0],
 }));
-const defaultCountry = countryOptions.find(
-	(country) => country.region_key === "IN"
-);
+const defaultCountry = options.find((country) => country.region_key === "IN");
 
 const HomePage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
 	const [currentlyPlaying, setCurrentlyPlaying] = useState([]);
-	const [defaultOption, setDefaultOption] = useState(defaultCountry);
-	const [options, setOptions] = useState(countryOptions);
-	const [selected, setSelected] = useState(defaultOption);
+	const [selected, setSelected] = useState(defaultCountry);
 
 	useEffect(() => {
 		setCurrentPage(1);
@@ -38,14 +34,9 @@ const HomePage = () => {
 			);
 
 			const data = response.data;
-			let modified = [];
-
-			data.results.forEach((entry) => {
-				modified.push({ ...entry, media_type: "movie" });
-			});
 
 			setCurrentlyPlaying((current) =>
-				currentPage === 1 ? modified : [...current, ...modified]
+				currentPage === 1 ? data.results : [...current, ...data.results]
 			);
 
 			setHasMore(currentPage !== data.total_pages);
@@ -79,7 +70,6 @@ const HomePage = () => {
 				<List
 					title={`Currently In Theatres`}
 					items={currentlyPlaying}
-					expanded={true}
 				/>
 			</InfiniteScroll>
 		</div>

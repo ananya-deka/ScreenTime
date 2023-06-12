@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 import requests from "../../api/requests";
 import axios from "../../api/axios";
 import profileFallback from "../../assets/profile.jpg";
-import TopRatedList from "./TopRatedList";
+import CarouselList from "./CarouselList";
 
+const region = "IN";
 const Details = ({ video }) => {
 	const params = useParams();
-	const [region, setRegion] = useState("IN");
 	const [unavailableMessage, setUnavailableMessage] = useState("");
 	const [streamingPlatforms, setStreamingPlatforms] = useState([]);
 	const [recommendations, setRecommendations] = useState([]);
@@ -105,7 +105,7 @@ const Details = ({ video }) => {
 					<header className={classes.info__header}>
 						<h2>You might also like</h2>
 					</header>
-					<TopRatedList items={recommendations} />
+					<CarouselList items={recommendations} />
 				</section>
 			)}
 			{cast && cast.length > 0 && (

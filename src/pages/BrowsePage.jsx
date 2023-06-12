@@ -11,22 +11,25 @@ const BrowsePage = () => {
 	const [options, setOptions] = useState([]);
 	const [selected, setSelected] = useState(null);
 	const [genres, setGenres] = useState([]);
-	const { movieGenres } = useGenre();
-	const { tvGenres } = useGenre();
+	const { movieGenres, tvGenres } = useGenre();
 	const [title, setTitle] = useState("");
 
 	useEffect(() => {
 		if (params.page) {
-			setGenres(params.page === "movie" ? movieGenres : tvGenres);
+			setGenres(
+				params.page === "movie" ? [...movieGenres] : [...tvGenres]
+			);
 		}
-	}, [params.page, movieGenres, tvGenres]);
+	}, [params.page, tvGenres, movieGenres]);
 
 	useEffect(() => {
 		if (params.mediaType) {
 			setSelected(null);
-			setGenres(params.mediaType === "movies" ? movieGenres : tvGenres);
+			setGenres(
+				params.mediaType === "movies" ? [...movieGenres] : [...tvGenres]
+			);
 		}
-	}, [params.mediaType, movieGenres, tvGenres]);
+	}, [params.mediaType, tvGenres, movieGenres]);
 
 	useEffect(() => {
 		const genreOptions = genres.map((genre) => ({

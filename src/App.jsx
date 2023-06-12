@@ -5,7 +5,7 @@ import classes from "./App.module.css";
 import Navbar from "./components/UI/Navbar";
 import SearchBar from "./components/UI/SearchBar";
 import { ScrollRestoration } from "react-router-dom";
-import { fetchPlaylists } from "./redux/playlistSlice";
+import { fetchPlaylists, transformPlaylists } from "./redux/playlistSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGenre } from "./context/genre-context";
@@ -15,6 +15,7 @@ function App() {
 	const fetchStatus = useSelector((state) => state.playlist.fetchStatus);
 	const [searchVisible, setSearchVisible] = useState(false);
 	const { setMovieGenres, setTvGenres } = useGenre();
+	const playlists = useSelector((state) => state.playlist.playlists);
 
 	useEffect(() => {
 		async function loadMovieGenres() {
@@ -33,7 +34,7 @@ function App() {
 
 		loadMovieGenres();
 		loadTvGenres();
-	}, []);
+	}, [setMovieGenres, setTvGenres]);
 
 	useEffect(() => {
 		window.addEventListener("keyup", hideSearch);
@@ -46,6 +47,12 @@ function App() {
 			dispatch(fetchPlaylists());
 		}
 	}, [dispatch, fetchStatus]);
+
+	useEffect(() => {
+		if (fetchStatus === "succeeded") {
+			dispatch(transformPlaylists());
+		}
+	}, [dispatch, fetchStatus, playlists]);
 
 	const hideSearch = (e) => {
 		if (e.code === "Escape") setSearchVisible(false);

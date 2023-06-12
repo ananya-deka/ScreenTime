@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { createContext, useContext, useState } from "react";
 
 const GenreContext = createContext();
@@ -7,13 +8,13 @@ const GenreProvider = (props) => {
 	const [movieGenres, setMovieGenres] = useState([]);
 	const [tvGenres, setTvGenres] = useState([]);
 
-	function setMovieGenresHandler(genres) {
+	const setMovieGenresHandler = useCallback((genres) => {
 		setMovieGenres(genres);
-	}
+	}, []);
 
-	function setTvGenresHandler(genres) {
+	const setTvGenresHandler = useCallback((genres) => {
 		setTvGenres(genres);
-	}
+	}, []);
 
 	const value = {
 		movieGenres,

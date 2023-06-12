@@ -1,8 +1,8 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
-import AddToPlaylist from "../components/Playlist/AddToPlaylist";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
 	playlists: {},
+	sortedPlaylists: [],
 	movies: {},
 	tv: {},
 	fetchStatus: "idle",
@@ -31,18 +31,28 @@ export const createPlaylist = createAsyncThunk(
 
 		const movies =
 			media_type === "movie"
-				? { [video.id]: { video, creation_time: new Date() } }
+				? {
+						[video.id]: {
+							video,
+							creation_time: new Date().toString(),
+						},
+				  }
 				: {};
 		const tv =
 			media_type === "tv"
-				? { [video.id]: { video, creation_time: new Date() } }
+				? {
+						[video.id]: {
+							video,
+							creation_time: new Date().toString(),
+						},
+				  }
 				: {};
 
 		const newEntry = {
 			name,
 			movies,
 			tv,
-			creation_time: new Date(),
+			creation_time: new Date().toString(),
 		};
 
 		const response = await fetch(
@@ -71,7 +81,9 @@ export const updatePlaylist = createAsyncThunk(
 			...state.playlists[key],
 		};
 
-		const newEntry = { [video.id]: { video, creation_time: new Date() } };
+		const newEntry = {
+			[video.id]: { video, creation_time: new Date().toString() },
+		};
 		if (media_type === "movie") {
 			if (updatedEntry.movies) {
 				updatedEntry.movies = { ...updatedEntry.movies, ...newEntry };
@@ -86,7 +98,7 @@ export const updatePlaylist = createAsyncThunk(
 			}
 		}
 
-		const response = await fetch(
+		await fetch(
 			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${key}.json`,
 			{
 				method: "put",
@@ -104,7 +116,7 @@ export const deletePlaylist = createAsyncThunk(
 	async (payload) => {
 		const key = payload.key;
 
-		const reponse = await fetch(
+		await fetch(
 			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${key}.json`,
 			{
 				method: "delete",
@@ -122,7 +134,7 @@ export const removeFromPlaylist = createAsyncThunk(
 		const media_type = payload.media_type;
 		const videoKey = payload.videoKey;
 
-		const response = await fetch(
+		await fetch(
 			`https://screentime-3123c-default-rtdb.firebaseio.com/playlists/${playlistKey}/${media_type}/${videoKey}.json`,
 			{
 				method: "delete",
@@ -136,7 +148,34 @@ export const removeFromPlaylist = createAsyncThunk(
 export const playlistSlice = createSlice({
 	name: "playlist",
 	initialState,
-	reducers: {},
+	reducers: {
+		transformPlaylists(state) {
+			state.sortedPlaylists = Object.keys(state.playlists).map((key) => {
+				const playlist = state.playlists[key];
+				const movies = playlist.movies
+					? Object.entries(playlist.movies)
+					: [];
+				const tv = playlist.tv ? Object.entries(playlist.tv) : [];
+				const items = [...movies, ...tv];
+				const sortedItems = [...items];
+				sortedItems.sort(
+					(a, b) =>
+						new Date(b[1].creation_time) -
+						new Date(a[1].creation_time)
+				);
+
+				const transformedItems = sortedItems.map(
+					(item) => item[1].video
+				);
+
+				return {
+					key,
+					sortedItems: transformedItems,
+					name: playlist.name,
+				};
+			});
+		},
+	},
 	extraReducers(builder) {
 		builder
 			.addCase(fetchPlaylists.pending, (state) => {
@@ -219,5 +258,7 @@ export const playlistSlice = createSlice({
 			});
 	},
 });
+
+export const { transformPlaylists } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

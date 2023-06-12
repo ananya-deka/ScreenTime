@@ -2,9 +2,10 @@ import requests from "../api/requests";
 import axios from "../api/axios";
 import { Navigate, useSearchParams } from "react-router-dom";
 import List from "../components/main/List";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import debounce from "lodash.debounce";
+import { useCallback } from "react";
 
 const SearchPage = () => {
 	const [searchResults, setSearchResults] = useState([]);
@@ -18,7 +19,8 @@ const SearchPage = () => {
 		setHasMore(true);
 	}, [query]);
 
-	async function getSearchResults(query, currentPage) {
+	const getSearchResults = useCallback(async (query, currentPage) => {
+		console.log("here");
 		const response = await axios.get(
 			`${requests.search}${query}&page=${currentPage}`
 		);
@@ -26,18 +28,19 @@ const SearchPage = () => {
 			(media) => media.media_type !== "person"
 		);
 
-		setSearchResults(
-			currentPage === 1 ? results : [...searchResults, ...results]
+		setSearchResults((prev) =>
+			currentPage === 1 ? results : [...prev, ...results]
 		);
 		setHasMore(currentPage !== response.data.total_pages);
-	}
+	}, []);
 
-	const debouncedGetSearchResults = useCallback(
-		debounce(
-			(query, currentPage) => getSearchResults(query, currentPage),
-			1000
-		),
-		[]
+	const debouncedGetSearchResults = useMemo(
+		() =>
+			debounce(
+				(query, currentPage) => getSearchResults(query, currentPage),
+				1000
+			),
+		[getSearchResults]
 	);
 
 	useEffect(() => {
