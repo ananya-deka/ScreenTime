@@ -7,7 +7,7 @@ A responsive web application bulit using **React.js**, **Redux**, and **Firebase
 [ScreenTime](time-screen.netlify.app)
 
 ## Pre-requisites
-You must have Node.js installed to run npm commands. Refer to https://nodejs.org/en to download and install it.
+You must have Node.js installed. Refer to https://nodejs.org/en to download and install it.
 
 ## Installation
 
