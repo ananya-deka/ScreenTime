@@ -20,7 +20,6 @@ const SearchPage = () => {
 	}, [query]);
 
 	const getSearchResults = useCallback(async (query, currentPage) => {
-		console.log("here");
 		const response = await axios.get(
 			`${requests.search}${query}&page=${currentPage}`
 		);

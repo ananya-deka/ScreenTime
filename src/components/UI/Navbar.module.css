@@ -21,10 +21,11 @@
 	width: fit-content;
 	margin: 1rem 0;
 	cursor: pointer;
-	display: flex;
 	color: whitesmoke;
 	padding: 0.5em;
 	border-radius: 1rem;
+	position: relative;
+	display: flex;
 }
 
 .selected {
@@ -49,6 +50,9 @@
 
 	.option {
 		gap: 1rem;
+		position: relative;
+		width: fit-content;
+		height: fit-content;
 	}
 
 	.option:hover {

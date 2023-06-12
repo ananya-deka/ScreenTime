@@ -42,7 +42,6 @@ const router = createBrowserRouter([
 			{
 				path: "search",
 				element: <SearchPage />,
-				// loader: searchLoader,
 			},
 			{
 				path: "details/:page/:id",
