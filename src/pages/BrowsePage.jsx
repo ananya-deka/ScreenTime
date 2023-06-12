@@ -71,7 +71,7 @@ const BrowsePage = () => {
 				}/${selected.id}`
 			);
 		}
-	}, [selected]);
+	}, [selected, navigate]);
 
 	function switchGenres(selectedOption) {
 		setSelected(selectedOption);

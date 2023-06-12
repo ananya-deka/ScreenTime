@@ -1,16 +1,27 @@
 import classes from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import homeLogo from "../../assets/home-filled-svgrepo-com.svg";
 import movieLogo from "../../assets/movie-logo.svg";
 import tvLogo from "../../assets/tv-logo.svg";
 import bookmarkLogo from "../../assets/heart-logo.svg";
 import searchLogo from "../../assets/search-svgrepo-com.svg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Navbar = ({ toggleSearch }) => {
+	const location = useLocation();
+	const currentPage = location.pathname.includes("movie")
+		? "movies"
+		: location.pathname.includes("tv")
+		? "tv"
+		: location.pathname.includes("playlist")
+		? "playlists"
+		: location.pathname.includes("search")
+		? "search"
+		: "home";
+
 	const [hovered, setHovered] = useState("");
-	const [selected, setSelected] = useState("");
+	const [selected, setSelected] = useState(currentPage);
 
 	return (
 		<div className={classes.navbar}>
