@@ -6,24 +6,18 @@ import Header from "../UI/Header";
 import { useParams } from "react-router-dom";
 import ExpandableHeader from "./ExpandableHeader";
 
-const CarouselList = ({
-	title,
-	items,
-	removeFromPlaylist,
-	deleteButton,
-	expanded,
-}) => {
+const CarouselList = ({ title, items, removeFromPlaylist, deleteButton }) => {
 	const params = useParams();
-
+	const expanded = !params.mediaType;
 	return (
 		<section className={classes.group}>
-			{expanded && (
+			{!expanded && (
 				<ExpandableHeader
 					title={title}
 					mediaType={params.mediaType === "movies" ? "movie" : "tv"}
 				/>
 			)}
-			{!expanded && (
+			{expanded && (
 				<Header>
 					<h3>{title}</h3>
 				</Header>

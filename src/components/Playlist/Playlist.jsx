@@ -45,7 +45,6 @@ const Playlist = ({ id, title, videos }) => {
 				deleteButton={
 					<DeleteButton removeItem={removeFromPlaylistHandler} />
 				}
-				expanded={true}
 			/>
 			{videos.length === 0 && (
 				<div className={classes.empty}>Nothing to show here.</div>

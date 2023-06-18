@@ -1,6 +1,6 @@
 import classes from "./AddToPlaylist.module.css";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import PlaylistButton from "../UI/PlaylistButton";
 import PlaylistMenu from "./PlaylistMenu";
 import heartLogo from "../../assets/heart-white.svg";
