@@ -36,7 +36,7 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${`${classes.option} ${
 						selected === "home" && hovered !== "home"
 							? classes.selected
-							: hovered
+							: hovered === "home"
 							? classes.hovered__home
 							: null
 					}`}`}
@@ -56,7 +56,7 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "movies" && hovered !== "movies"
 							? classes.selected
-							: hovered
+							: hovered === "movies"
 							? classes.hovered__movies
 							: null
 					}`}
@@ -80,7 +80,7 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "tv" && hovered !== "tv"
 							? classes.selected
-							: hovered
+							: hovered === "tv"
 							? classes.hovered__tv
 							: null
 					}`}
@@ -100,7 +100,7 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "playlists" && hovered !== "playlists"
 							? classes.selected
-							: hovered
+							: hovered === "playlists"
 							? classes.hovered__playlists
 							: null
 					}`}
@@ -125,7 +125,7 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "search" && hovered !== "search"
 							? classes.selected
-							: hovered
+							: hovered === "search"
 							? classes.hovered__search
 							: null
 					}`}
