@@ -59,6 +59,26 @@
 		animation: slideout 0.3s ease-out forwards;
 		background-color: #001940;
 	}
+
+	.hovered__home::before {
+		content: "Home";
+	}
+
+	.hovered__movies::before {
+		content: "Movies";
+	}
+
+	.hovered__tv::before {
+		content: "TV";
+	}
+
+	.hovered__playlists::before {
+		content: "Playlists";
+	}
+
+	.hovered__search::before {
+		content: "Search";
+	}
 }
 
 @keyframes slideout {

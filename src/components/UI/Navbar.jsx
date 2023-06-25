@@ -36,14 +36,14 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${`${classes.option} ${
 						selected === "home" && hovered !== "home"
 							? classes.selected
+							: hovered
+							? classes.hovered__home
 							: null
 					}`}`}
 					onClick={navigationHandler.bind(null, "home", "/")}
 					onMouseEnter={() => setHovered("home")}
 					onMouseLeave={() => setHovered("")}
 				>
-					{hovered === "home" && <p>Home</p>}
-
 					<img
 						className={classes.icon}
 						height="23"
@@ -56,6 +56,8 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "movies" && hovered !== "movies"
 							? classes.selected
+							: hovered
+							? classes.hovered__movies
 							: null
 					}`}
 					onMouseEnter={() => setHovered("movies")}
@@ -66,8 +68,6 @@ const Navbar = ({ toggleSearch }) => {
 						"/browse/movies"
 					)}
 				>
-					{hovered === "movies" && <p>Movies</p>}
-
 					<img
 						className={classes.icon}
 						height="23"
@@ -80,14 +80,14 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "tv" && hovered !== "tv"
 							? classes.selected
+							: hovered
+							? classes.hovered__tv
 							: null
 					}`}
 					onMouseEnter={() => setHovered("tv")}
 					onMouseLeave={() => setHovered("")}
 					onClick={navigationHandler.bind(null, "tv", "/browse/tv")}
 				>
-					{hovered === "tv" && <p>TV</p>}
-
 					<img
 						className={classes.icon}
 						height="23"
@@ -100,6 +100,8 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "playlists" && hovered !== "playlists"
 							? classes.selected
+							: hovered
+							? classes.hovered__playlists
 							: null
 					}`}
 					onMouseEnter={() => setHovered("playlists")}
@@ -110,8 +112,6 @@ const Navbar = ({ toggleSearch }) => {
 						"/playlists"
 					)}
 				>
-					{hovered === "playlists" && <p>Playlists</p>}
-
 					<img
 						className={classes.icon}
 						height="23"
@@ -125,6 +125,8 @@ const Navbar = ({ toggleSearch }) => {
 					className={`${classes.option} ${
 						selected === "search" && hovered !== "search"
 							? classes.selected
+							: hovered
+							? classes.hovered__search
 							: null
 					}`}
 					onMouseEnter={() => setHovered("search")}
@@ -134,8 +136,6 @@ const Navbar = ({ toggleSearch }) => {
 						setSelected("search");
 					}}
 				>
-					{hovered === "search" && <p>Search</p>}
-
 					<img
 						className={classes.icon}
 						height="23"
